@@ -1,11 +1,17 @@
-import React, { Component } from 'react';
-import './App.css';
+import './App.css'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import UserTest from './components/user-profile/'
-import UserInterface from './components/user-profile/UserInterface'
+import User from './models/User'
+import ActivitiesSummary from './components/activities-summary'
+import { initializeActivities } from './reducers/activities-reducer'
 
-class App extends Component {
+class App extends Component<any, any> {
+  componentDidMount = () => {
+    this.props.initializeActivities()
+  }
   render() {
-    const getUser = (): UserInterface => {
+    const getUser = (): User => {
       return {
         name: 'Jarno',
         age: 18,
@@ -15,24 +21,15 @@ class App extends Component {
       }
     }
     return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-            Hello <UserTest { ...getUser() } />
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+          Hello, <UserTest { ...getUser() } />
+          <ActivitiesSummary />
       </div>
     );
   }
 }
 
-export default App;
+const mapDispatchersToProps = {
+  initializeActivities
+}
+export default connect(null, mapDispatchersToProps)(App)
