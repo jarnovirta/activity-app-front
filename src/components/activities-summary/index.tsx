@@ -4,7 +4,7 @@
 */
 import React from 'react'
 import { connect } from 'react-redux'
-import StravaDetailedActivity from './../../models/StravaDetailedActivity'
+import StravaDetailedActivity from '../../models/StravaDetailedActivity'
 
 interface IProps {
   activities: Array<StravaDetailedActivity>

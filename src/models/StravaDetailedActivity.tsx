@@ -1,7 +1,5 @@
 // Strava API reference: https://developers.strava.com/docs/reference/#api-models-DetailedActivity
 
-
-
 export default interface StravaDetailedActivity {
   id: number,             // activitys Strava-id
   name: string,           // activity's name
@@ -15,5 +13,4 @@ export default interface StravaDetailedActivity {
   kilojoules: number      // total work in kJ, only bike rides
   description: string     // description of the activity
   calories: number        // kilocalories consumed during activity
-
 }
