@@ -1,20 +1,24 @@
-/*
-  Tähän samalla tavalla kuin Stravan etusivulla on yhteenveto viikko (, kuukausi) ja vuosi.
-  Ja joku valitsin jolla voi valita jonkin aktiviteeteista joille on suorituksia
-*/
 import React from 'react'
 import { connect } from 'react-redux'
-import StravaDetailedActivity from '../../models/StravaDetailedActivity'
+import { Card, ListGroup } from 'react-bootstrap'
+import StravaDetailedActivity from '../../models/strava/StravaDetailedActivity'
+import ActivitiesWeekSummary from './activities-week-summary'
 
 interface IProps {
   activities: Array<StravaDetailedActivity>
 }
 const ActivitiesSummary: React.FunctionComponent<IProps> = (props: IProps) => {
-  if (props.activities[0] != null) console.log(props.activities[1].name)
   return (
     <div>
-      ACTIVITIES SUMMARY
-      count = { props.activities.length }
+      <Card>
+        <Card.Header>Activities Summary</Card.Header>
+        <ListGroup variant="flush">
+          <ListGroup.Item><ActivitiesWeekSummary /></ListGroup.Item>
+          <ListGroup.Item>Month summary</ListGroup.Item>
+          <ListGroup.Item>Year summary</ListGroup.Item>
+        </ListGroup>
+      </Card>
+
     </div>
   )
 }

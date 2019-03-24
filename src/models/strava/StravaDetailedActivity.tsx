@@ -6,7 +6,7 @@ export default interface StravaDetailedActivity {
   distance: number,       // meters
   moving_time: number,    // seconds
   elapsed_time: number,   // seconds
-  start_date_local: Date  // activity's local start time
+  start_date_local: string,  // activity's local start time
   workout_type: number,
   average_speed: number,  // meters per second
   max_speed: number,      // meters per second

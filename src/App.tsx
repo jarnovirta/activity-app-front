@@ -1,6 +1,7 @@
 import './App.css'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import UserTest from './components/user-profile/'
 import User from './models/User'
 import ActivitiesSummary from './components/activities-summary'
@@ -11,19 +12,12 @@ class App extends Component<any, any> {
     this.props.initializeActivities()
   }
   render() {
-    const getUser = (): User => {
-      return {
-        name: 'Jarno',
-        age: 18,
-        address: "Pietarinkatu",
-        dob: new Date()
-
-      }
-    }
     return (
-      <div>
-          Hello, <UserTest { ...getUser() } />
+      <div className="container">
+        <h1>Jarno's Fitness App</h1>
+        <Router>
           <ActivitiesSummary />
+        </Router>
       </div>
     );
   }
