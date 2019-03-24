@@ -1,3 +1,5 @@
+import { StravaActivityType } from "./strava-activity-type";
+
 // Strava API reference: https://developers.strava.com/docs/reference/#api-models-DetailedActivity
 
 export default interface StravaDetailedActivity {
@@ -6,6 +8,7 @@ export default interface StravaDetailedActivity {
   distance: number,       // meters
   moving_time: number,    // seconds
   elapsed_time: number,   // seconds
+  type: StravaActivityType,
   start_date_local: string,  // activity's local start time
   workout_type: number,
   average_speed: number,  // meters per second
