@@ -1,11 +1,9 @@
 import './App.css'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import UserTest from './components/user-profile/'
-import User from './models/User'
+import { BrowserRouter as Router } from 'react-router-dom'
 import ActivitiesSummary from './components/activities-summary'
-import { initializeActivities } from './reducers/activities-reducer'
+import { initializeActivities } from './store/activities/activities-reducer'
 
 class App extends Component<any, any> {
   componentDidMount = () => {

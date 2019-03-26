@@ -50,6 +50,7 @@ const getChartData = (activities:Array<StravaDetailedActivity>): Array<IChartDat
 }
 
 const ActivitiesWeekSummary: React.FunctionComponent<IProps> = (props: IProps) => {
+  console.log('rendering chart')
   return (
     <div>
       <BarChart
@@ -72,7 +73,7 @@ const ActivitiesWeekSummary: React.FunctionComponent<IProps> = (props: IProps) =
 }
 const mapStateToProps = (state: any) => {
   return {
-    activities: state.activities
+    activities: state.activities.activities
   }
 }
 export default connect(mapStateToProps)(ActivitiesWeekSummary)
