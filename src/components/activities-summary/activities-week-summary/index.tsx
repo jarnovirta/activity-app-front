@@ -4,7 +4,7 @@ import StravaDetailedActivity from '../../../models/strava/strava-detailed-activ
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip,
 } from 'recharts'
-import { StravaActivityType } from '../../../models/strava/strava-activity-type'
+import StravaActivityType from '../../../models/strava/strava-activity-type'
 import compareDates from './../../../util/compare-dates'
 import { IChartData, IProps } from './types'
 
@@ -21,7 +21,6 @@ const getChartData = (weekActivityData:Array<StravaDetailedActivity>):Array<ICha
         })
         .map(activity => activity.distance)
         .reduce((sum, distance) => sum + distance, 0)
-
       chartData[i] = {
         day: days[chartDate.getDay()],
         distance: dist = Math.round(10 * dist / 1000) / 10
@@ -63,7 +62,7 @@ const ActivitiesWeekSummary: React.FunctionComponent<IProps> = (props: IProps) =
 const mapStateToProps = (state: any) => {
   return {
     activities: filterActivities(
-      state.activities.activities,
+      state.activities,
       state.activitiesSummary.selectedActivity)
   }
 }

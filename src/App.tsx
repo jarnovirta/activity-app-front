@@ -2,19 +2,22 @@ import './App.css'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
-import ActivitiesSummary from './components/activities-summary'
+import Home from './components/home'
 import { initializeActivities } from './store/activities/activities-reducer'
+import { setUser } from './store/user/user-reducer'
+import userService from './services/user'
 
 class App extends Component<any, any> {
-  componentDidMount = () => {
+  componentDidMount = async () => {
     this.props.initializeActivities()
+    this.props.setUser(await userService.getUser())
   }
   render() {
     return (
       <div className="container">
         <h1>Jarno's Fitness App</h1>
         <Router>
-          <ActivitiesSummary />
+          <Home />
         </Router>
       </div>
     );
@@ -22,6 +25,7 @@ class App extends Component<any, any> {
 }
 
 const mapDispatchersToProps = {
-  initializeActivities
+  initializeActivities, setUser
+
 }
 export default connect(null, mapDispatchersToProps)(App)

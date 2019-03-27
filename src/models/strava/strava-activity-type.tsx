@@ -1,4 +1,4 @@
-export enum StravaActivityType {
+enum StravaActivityType {
   AlpineSki, BackcountrySki, Canoeing,
   Crossfit, EBikeRide, Elliptical, Golf,
   Handcycle, Hike, IceSkate, InlineSkate,
@@ -9,5 +9,6 @@ export enum StravaActivityType {
   Surfing, Swim, Velomobile, VirtualRide,
   VirtualRun, Walk, WeightTraining,
   Wheelchair, Windsurf, Workout, Yoga
-
 }
+
+export default StravaActivityType

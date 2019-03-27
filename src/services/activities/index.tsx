@@ -1,4 +1,4 @@
-import { StravaActivityType } from "../../models/strava/strava-activity-type";
+import StravaActivityType from "../../models/strava/strava-activity-type";
 import StravaDetailedActivity from "../../models/strava/strava-detailed-activity";
 
 const getAll = async ():Promise<Array<StravaDetailedActivity>> => {
@@ -21,7 +21,7 @@ const getActivityList = (activityType:StravaActivityType):Array<StravaDetailedAc
       "type" : activityType,
       "workout_type" : 2,
       "id" : 154504250376823,
-      "start_date_local" : date.toString(),
+      "start_date_local" : date.toISOString(),
       "average_speed" : Math.floor(Math.random() * 17 * 10) / 10,
       "max_speed" : Math.floor(Math.random() * 30 * 10) / 10,
       "kilojoules" : Math.floor(Math.random() * 1200 * 10) / 10,

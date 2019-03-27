@@ -1,4 +1,4 @@
-import { StravaActivityType } from "../../models/strava/strava-activity-type";
+import StravaActivityType from "../../models/strava/strava-activity-type";
 
 export const SET_ACTIVITY = 'SET_ACTIVITY'
 

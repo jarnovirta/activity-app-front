@@ -1,4 +1,4 @@
-import { StravaActivityType } from "./strava-activity-type";
+import StravaActivityType from "./strava-activity-type";
 
 // Strava API reference: https://developers.strava.com/docs/reference/#api-models-DetailedActivity
 

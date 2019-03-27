@@ -1,10 +1,13 @@
-import './App.css'
+import './index.css'
 import React from 'react'
+import Profile from './../profile'
+import ActivitiesSummary from './../activities-summary'
 
 const Home = () => {
   return (
-    <div>
-
+    <div className="content">
+      <Profile />
+      <ActivitiesSummary />
     </div>
   )
 }
