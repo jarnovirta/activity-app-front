@@ -4,25 +4,13 @@ import StravaDetailedActivity from '../../../models/strava/strava-detailed-activ
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip,
 } from 'recharts'
-import { StravaActivityType } from '../../../models/strava/strava-activity-type';
+import { StravaActivityType } from '../../../models/strava/strava-activity-type'
+import compareDates from './../../../util/compare-dates'
+import { IChartData, IProps } from './types'
 
-interface IProps {
-  activities: Array<StravaDetailedActivity>
-}
-interface IChartData {
-  day: string,
-  distance: number
-}
-
-const days = ["Sun", "Mon","Tue","Wed","Thu","Fri","Sat"]
+const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 const startDate = new Date(Date.now() - 6 * 24 * 60 * 60 * 1000)
-const compareDates = (date1:Date, date2:Date):number => {
-  let d1 = new Date(date1)
-  d1.setHours(0, 0, 0, 0)
-  let d2 = new Date(date2)
-  d2.setHours(0, 0, 0, 0)
-  return d1.getTime() - d2.getTime()
-}
+
 const getChartData = (weekActivityData:Array<StravaDetailedActivity>):Array<IChartData> => {
     const chartDate:Date = new Date(startDate)
     let chartData:Array<IChartData> = []
@@ -58,12 +46,11 @@ const ActivitiesWeekSummary: React.FunctionComponent<IProps> = (props: IProps) =
     <div>
       <BarChart
         width={500}
-        height={200}
+        height={150}
         data={ getChartData(props.activities) }
         margin={{
           top: 5, right: 30, left: 0, bottom: 5,
-        }}
-      >
+        }}>
         <XAxis dataKey="day" />
         <YAxis />
         <Tooltip />
