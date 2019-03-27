@@ -4,9 +4,10 @@ import StravaDetailedActivity from '../../../models/strava/strava-detailed-activ
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
 } from 'recharts'
+import { StravaActivityType } from '../../../models/strava/strava-activity-type';
 
 interface IProps {
-  activities: Array<StravaDetailedActivity>
+  activities: Array<IChartData>
 }
 interface IChartData {
   day: string,
@@ -23,13 +24,16 @@ const compareDates = (date1:Date, date2:Date):number => {
   return d1.getTime() - d2.getTime()
 }
 
-const getChartData = (activities:Array<StravaDetailedActivity>): Array<IChartData> => {
+const filterChartData = (
+  activities:Array<StravaDetailedActivity>,
+  activityType: StravaActivityType): Array<IChartData> => {
   let chartData:Array<IChartData> = []
   let date = new Date(Date.now() - 6 * 24 * 60 * 60 * 1000)
   const weekActivityData:Array<StravaDetailedActivity> =
     activities
     .filter(activity => {
-      return compareDates(new Date(activity.start_date_local), date) >= 0
+      return activity.type === activityType && compareDates(new Date(activity.start_date_local), date) >= 0
+
     })
 
   for (let i = 0; i < 7; i++) {
@@ -50,13 +54,12 @@ const getChartData = (activities:Array<StravaDetailedActivity>): Array<IChartDat
 }
 
 const ActivitiesWeekSummary: React.FunctionComponent<IProps> = (props: IProps) => {
-  console.log('rendering chart')
   return (
     <div>
       <BarChart
         width={500}
         height={200}
-        data={ getChartData(props.activities) }
+        data={ props.activities }
         margin={{
           top: 5, right: 30, left: 0, bottom: 5,
         }}
@@ -73,7 +76,7 @@ const ActivitiesWeekSummary: React.FunctionComponent<IProps> = (props: IProps) =
 }
 const mapStateToProps = (state: any) => {
   return {
-    activities: state.activities.activities
+    activities: filterChartData(state.activities.activities, state.activitiesSummary.selectedActivity)
   }
 }
 export default connect(mapStateToProps)(ActivitiesWeekSummary)
