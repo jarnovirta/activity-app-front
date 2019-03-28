@@ -18,10 +18,11 @@ const filterLatestActivity = (activities:Array<StravaDetailedActivity>) => {
 const Profile: React.FunctionComponent<IProps> = (props: IProps) => {
   const LatestActivity = () => {
     if (!props.latestActivity) return (<div></div>)
-    console.log(props.latestActivity.start_date_local)
     return (
       <div>
-        Latest activity: <b>{ StravaActivityType[props.latestActivity.type] }</b> - <Moment format="MMM DD, YYYY">{props.latestActivity.start_date_local}</Moment>
+        Latest activity:<br />
+        <b>{ StravaActivityType[props.latestActivity.type] }</b>
+        &nbsp;- <Moment format="MMM DD, YYYY">{props.latestActivity.start_date_local}</Moment>
       </div>
     )
   }
@@ -46,7 +47,7 @@ const Profile: React.FunctionComponent<IProps> = (props: IProps) => {
             <LatestActivity />
           </ListGroup.Item>
           <ListGroup.Item>
-            [link to activities log]
+            Your Training Log
           </ListGroup.Item>
         </ListGroup>
       </Card>
