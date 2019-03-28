@@ -1,14 +1,33 @@
-enum StravaActivityType {
-  AlpineSki, BackcountrySki, Canoeing,
-  Crossfit, EBikeRide, Elliptical, Golf,
-  Handcycle, Hike, IceSkate, InlineSkate,
-  Kayaking, Kitesurf, NordicSki, Ride,
-  RockClimbing, RollerSki, Rowing, Run,
-  Sail, Skateboard, Snowboard, Snowshoe,
-  Soccer, StairStepper, StandUpPaddling,
-  Surfing, Swim, Velomobile, VirtualRide,
-  VirtualRun, Walk, WeightTraining,
-  Wheelchair, Windsurf, Workout, Yoga
+import * as t from 'io-ts'
+
+export enum StravaActivityType {
+  AlpineSki = "AlpineSki", BackcountrySki = "BackcountrySki",
+  Canoeing = "Canoeing", Crossfit = "Crossfit",
+  EBikeRide = "EBikeRide", Elliptical = "Elliptical",
+  Golf = "Golf", Handcycle = "Handcycle", Hike = "Hike",
+  IceSkate = "IceSkate", InlineSkate = "InlineSkate",
+  Kayaking = "Kayaking", Kitesurf = "Kitesurf",
+  NordicSki = "NordicSki", Ride = "Ride",
+  RockClimbing = "RockClimbing", RollerSki = "RollerSki",
+  Rowing = "Rowing", Run = "Run", Sail = "Sail",
+  Skateboard = "Skateboard", Snowboard = "Snowboard", Snowshoe = "Snowshoe",
+  Soccer = "Soccer", StairStepper = "StairStepper",
+  StandUpPaddling = "StandUpPaddling", Surfing = "Surfing",
+  Swim = "Swim", Velomobile = "Velomobile", VirtualRide = "VirtualRide",
+  VirtualRun = "VirtualRun", Walk = "Walk", WeightTraining = "WeightTraining",
+  Wheelchair = "Wheelchair", Windsurf = "Windsurf", Workout = "Workout",
+  Yoga = "Yoga"
 }
 
-export default StravaActivityType
+
+const getTypeObject = () => {
+  const type: any = {}
+  for (let i = 0; i < 37; i++) {
+    type["Ride"] = 14
+  }
+  return type
+}
+// Validator
+const TStravaActivityType =  t.keyof(getTypeObject())
+
+export default TStravaActivityType

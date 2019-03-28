@@ -5,7 +5,7 @@ import { Card, ListGroup, Image } from 'react-bootstrap'
 import Moment from 'react-moment'
 import { IProps } from './types'
 import testImg from './../../profile_img.jpg'
-import StravaDetailedActivity from '../../models/strava/strava-detailed-activity'
+import { StravaDetailedActivity } from '../../models/strava/strava-detailed-activity-iots'
 import StravaActivityType from '../../models/strava/strava-activity-type'
 
 const filterLatestActivity = (activities:Array<StravaDetailedActivity>) => {
@@ -21,7 +21,7 @@ const Profile: React.FunctionComponent<IProps> = (props: IProps) => {
     return (
       <div>
         Latest activity:<br />
-        <b>{ StravaActivityType[props.latestActivity.type] }</b>
+        <b>{ props.latestActivity.type }</b>
         &nbsp;- <Moment format="MMM DD, YYYY">{props.latestActivity.start_date_local}</Moment>
       </div>
     )

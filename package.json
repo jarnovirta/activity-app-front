@@ -12,6 +12,8 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/recharts": "^1.1.16",
     "@types/redux": "^3.6.0",
+    "axios": "^0.18.0",
+    "io-ts": "^1.8.4",
     "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.6",
@@ -37,6 +39,7 @@
     "eject": "react-scripts eject",
     "startdb": "node ./json-server/server.js"
   },
+  "proxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": "react-app"
   },
