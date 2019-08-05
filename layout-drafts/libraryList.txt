@@ -1,0 +1,6 @@
+Listaus: http://voidcanvas.com/top-10-react-graph-chart-libraries-with-demo/
+
+Käytetään:
+- Recharts
+- react-bootstrap
+- SASS/LESS?

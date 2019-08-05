@@ -1,0 +1,23 @@
+FITBIT voi synkronoida stravaan!!
+
+Track Distance
+- both
+
+Track route
+- Strava
+
+Measure pace
+- Strava
+
+Activity report
+- Both
+
+Exercise diary
+- both
+
+Sleep reports
+- Strava
+
+Nutrition tracking, calories, water intake
+Fitbit
+

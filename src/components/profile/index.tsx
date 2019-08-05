@@ -6,7 +6,6 @@ import Moment from 'react-moment'
 import { IProps } from './types'
 import testImg from './../../profile_img.jpg'
 import { StravaDetailedActivity } from '../../models/strava/strava-detailed-activity-iots'
-import StravaActivityType from '../../models/strava/strava-activity-type'
 
 const filterLatestActivity = (activities:Array<StravaDetailedActivity>) => {
   return activities
@@ -27,19 +26,19 @@ const Profile: React.FunctionComponent<IProps> = (props: IProps) => {
     )
   }
   return (
-    <div className="profileCard">
+    <div className="profile">
     <div style={{ display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'}}>
     <Image src={testImg }
-            style={{marginBottom: '-2rem', zIndex: 100000, position:'relative', maxWidth:'100px', maxHeight:'80px'}}
+            style={{marginBottom: '-2.5rem', zIndex: 100000, position:'relative', maxWidth:'80px', maxHeight:'80px'}}
             roundedCircle />
     </div>
       <Card>
         <Card.Header>
           <div className="profileBody text-center">
             <h3>{ props.user.name }</h3>
-            <p>Activities: { props.activitiesCount }</p>
+            <p>Activities - { props.activitiesCount }</p>
           </div>
         </Card.Header>
         <ListGroup variant="flush">
