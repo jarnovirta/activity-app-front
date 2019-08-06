@@ -3,7 +3,7 @@ const server = jsonServer.create();
 const activitiesData = require('./dataGenerator.js')();
 const router = jsonServer.router(activitiesData);
 const middlewares = jsonServer.defaults();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3003;
 
 server.use(jsonServer.bodyParser);
 server.use(middlewares);

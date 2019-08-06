@@ -32,6 +32,7 @@
   "devDependencies": {
     "json-server": "^0.14.2"
   },
+  "proxy": "http://localhost:3001",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -39,7 +40,6 @@
     "eject": "react-scripts eject",
     "startdb": "node ./json-server/server.js"
   },
-  "proxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": "react-app"
   },
