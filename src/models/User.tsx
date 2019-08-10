@@ -1,4 +1,5 @@
 export default interface User {
-  name: string
-  dob: Date|undefined
+  firstName: string,
+  lastName: string,
+  username: string
 }

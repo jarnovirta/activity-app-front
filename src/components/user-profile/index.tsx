@@ -13,7 +13,7 @@ class UserTest extends React.Component<User, any> {
   render() {
     return (
       <div>
-        { this.props.name }
+        { this.props.username }
       </div>
     )
   }

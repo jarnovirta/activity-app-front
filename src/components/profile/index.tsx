@@ -37,7 +37,7 @@ const Profile: React.FunctionComponent<IProps> = (props: IProps) => {
       <Card>
         <Card.Header>
           <div className="profileBody text-center">
-            <h3>{ props.user.name }</h3>
+            <h3>{ props.user.username }</h3>
             <p>Activities - { props.activitiesCount }</p>
           </div>
         </Card.Header>

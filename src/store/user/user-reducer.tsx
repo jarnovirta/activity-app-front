@@ -1,10 +1,12 @@
 import { Dispatch } from 'redux'
 import { SET_USER, ActivitiesActionTypes } from './types'
-import User from '../../models/User';
+import User from '../../models/User'
+import userService from './../../services/user'
 
 const initialState:User = {
-  name: '',
-  dob: undefined
+  firstName: 'first',
+  lastName: 'lastname',
+  username: 'username'
 }
 export const reducer = (
   state = initialState,
@@ -18,6 +20,16 @@ export const reducer = (
 
 export const setUser = (user:User) => {
   return async (dispatch: Dispatch) => {
+    dispatch({
+      type: SET_USER,
+      data: user
+    })
+  }
+}
+
+export const addUser = (user:User) => {
+  return async (dispatch: Dispatch) => {
+    user = await userService.addUser(user)
     dispatch({
       type: SET_USER,
       data: user

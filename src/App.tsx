@@ -21,7 +21,10 @@ const getStravaAuthentication = async (event:any) => {
 class App extends Component<any, any> {
   componentDidMount = async () => {
     this.props.initializeActivities()
-    this.props.setUser(await userService.getUser())
+    const userString = window.localStorage.getItem('loggedInBlogAppUser')
+    if (userString !== null) {
+      this.props.setUser(JSON.parse(userString))
+    }    
   }
   render() {
     return (
