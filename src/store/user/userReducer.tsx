@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux'
 import { SET_USER, ActivitiesActionTypes } from './types'
 import User from '../../models/User'
-import userService from './../../services/user'
+import userService from '../../services/user'
 
 const initialState:User = {
   firstName: 'first',
@@ -27,9 +27,9 @@ export const setUser = (user:User) => {
   }
 }
 
-export const addUser = (user:User) => {
+export const addUser = (user:User) => {  
   return async (dispatch: Dispatch) => {
-    user = await userService.addUser(user)
+    user = await userService.post(user)
     dispatch({
       type: SET_USER,
       data: user

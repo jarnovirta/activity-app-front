@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { StravaDetailedActivity } from "../../models/strava/strava-detailed-activity-iots"
-import TStravaDetailedActivity from "../../models/strava/strava-detailed-activity-iots"
+import { StravaDetailedActivity } from "../../models/strava/stravaDetailedActivityIots"
+import TStravaDetailedActivity from "../../models/strava/stravaDetailedActivityIots"
 
 const baseUrl = '/strava-activities'
 

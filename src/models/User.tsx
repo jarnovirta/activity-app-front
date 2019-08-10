@@ -1,5 +1,7 @@
 export default interface User {
   firstName: string,
   lastName: string,
-  username: string
+  username: string,
+  password?: string,
+  passwordHash?: string
 }

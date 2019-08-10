@@ -1,4 +1,4 @@
-import { StravaDetailedActivity } from "../../../models/strava/strava-detailed-activity-iots";
+import { StravaDetailedActivity } from "../../../models/strava/stravaDetailedActivityIots";
 
 export interface IProps {
   activities: Array<StravaDetailedActivity>

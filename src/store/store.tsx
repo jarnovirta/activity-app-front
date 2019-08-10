@@ -1,8 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { reducer as activitiesReducer,
-  initializeActivities as initializeActivitiesReducer } from './activities/activities-reducer'
-import { reducer as activitiesSummaryReducer } from './activities-summary/activities-summary-reducer'
-import { reducer as userReducer } from './user/user-reducer'
+  initializeActivities as initializeActivitiesReducer } from './activities/activitiesReducer'
+import { reducer as activitiesSummaryReducer } from './activitiesSummary/activitiesSummaryReducer'
+import { reducer as userReducer } from './user/userReducer'
 import thunk from 'redux-thunk'
 
 const reducer = combineReducers({

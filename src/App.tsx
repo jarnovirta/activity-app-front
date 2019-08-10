@@ -3,10 +3,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 import Home from './components/home'
-import { initializeActivities } from './store/activities/activities-reducer'
-import { setUser } from './store/user/user-reducer'
+import { initializeActivities } from './store/activities/activitiesReducer'
+import { setUser } from './store/user/userReducer'
 import userService from './services/user'
 import oauthService from './services/oauth'
+
 
 const getStravaAuthentication = async (event:any) => {
   event.preventDefault() 
@@ -14,14 +15,14 @@ const getStravaAuthentication = async (event:any) => {
   const stravaAuthUrl = "http://www.strava.com/oauth/authorize?"
     + "client_id=33120&response_type=code&redirect_uri=" 
     + redirectUrl + "&"
-    + "approval_prompt=force&scope=profile:write,activity:write"  
+    + "approval_prompt=force&scope=profile:write,activity:write"
     window.location.href = stravaAuthUrl  
 }
 
 class App extends Component<any, any> {
   componentDidMount = async () => {
     this.props.initializeActivities()
-    const userString = window.localStorage.getItem('loggedInBlogAppUser')
+    const userString = window.localStorage.getItem('FitnessAppUser')
     if (userString !== null) {
       this.props.setUser(JSON.parse(userString))
     }    

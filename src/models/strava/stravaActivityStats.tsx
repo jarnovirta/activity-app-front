@@ -1,4 +1,4 @@
-import StravaActivityTotal from "./strava-activity-total";
+import StravaActivityTotal from "./stravaActivityTotal";
 
 export default interface StravaActivityStats {
   biggest_ride_distance: number,             // The longest distance ridden by the athlete
