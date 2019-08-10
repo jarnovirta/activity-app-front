@@ -2,7 +2,7 @@ import './index.css'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Card, ListGroup } from 'react-bootstrap'
-import { StravaDetailedActivity } from '../../models/strava/stravaDetailedActivityIots'
+import { StravaDetailedActivity } from '../../models/strava/strava-detailed-activity-iots'
 import ActivitiesWeekSummary from './activitiesWeekSummary'
 import ActivityButtons from './activityButtons'
 

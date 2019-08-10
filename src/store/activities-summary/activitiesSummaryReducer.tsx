@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux'
-import { StravaActivityType } from '../../models/strava/stravaActivityType';
+import { StravaActivityType } from '../../models/strava/strava-activity-type';
 import { SET_ACTIVITY, ActivitiesActionTypes, ActivitiesSummaryState } from './types'
 
 

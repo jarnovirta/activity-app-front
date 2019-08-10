@@ -1,5 +1,5 @@
 import * as t from 'io-ts'
-import StravaActivityType from './stravaActivityType'
+import StravaActivityType from './strava-activity-type'
 
 // Type of StravaDetailedActivity
 export type StravaDetailedActivity = t.TypeOf<typeof TStravaDetailedActivity>;

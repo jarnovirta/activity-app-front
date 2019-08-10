@@ -1,6 +1,6 @@
 import React, { Props } from 'react'
 import { connect } from 'react-redux'
-import { addUser } from '../../store/user/userReducer'
+import { addUser } from '../../store/user/user-reducer'
 import { FormGroup, FormControl, FormLabel, Button } from 'react-bootstrap'
 import User from '../../models/User'
 
@@ -16,6 +16,12 @@ const addUserHandler = (props:IProps) => (event: any) => {
     username: event.target.username.value,
     password: event.target.password.value 
   }
+  console.log("clearing")
+  event.target.firstName.value = ""
+  event.target.lastName.value = ""
+  event.target.username.value = ""
+  event.target.password.value = ""
+
   props.addUser(user)
 }
 const addUserComponent: React.SFC<IProps> = (props:IProps) => {

@@ -5,7 +5,7 @@ import { Card, ListGroup, Image } from 'react-bootstrap'
 import Moment from 'react-moment'
 import { IProps } from './types'
 import testImg from './../../profile_img.jpg'
-import { StravaDetailedActivity } from '../../models/strava/stravaDetailedActivityIots'
+import { StravaDetailedActivity } from '../../models/strava/strava-detailed-activity-iots'
 
 const filterLatestActivity = (activities:Array<StravaDetailedActivity>) => {
   return activities

@@ -2,7 +2,7 @@ import './index.css'
 import React from 'react'
 import Profile from './../profile'
 import ActivitiesSummary from '../activitiesSummary'
-import AddUser from '../addUser/index'
+import AddUser from '../add-user/index'
 
 const Home = () => {
   return (

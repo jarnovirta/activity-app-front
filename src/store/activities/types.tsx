@@ -1,4 +1,4 @@
-import { StravaDetailedActivity } from "../../models/strava/stravaDetailedActivityIots";
+import { StravaDetailedActivity } from "../../models/strava/strava-detailed-activity-iots";
 
 export const INITIALIZE_ACTIVITIES = 'INITIALIZE_ACTIVITIES'
 
