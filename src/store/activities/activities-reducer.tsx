@@ -15,9 +15,9 @@ export const reducer = (
     return state
   }
 
-export const initializeActivities = () => {
+export const initializeActivities = (stravaAccessToken: string) => {
   return async (dispatch: Dispatch) => {
-    const activities: Array<StravaDetailedActivity> = await activityService.getAll()
+    const activities: Array<StravaDetailedActivity> = await activityService.getAll(stravaAccessToken)
     dispatch({
       type: INITIALIZE_ACTIVITIES,
       data: activities

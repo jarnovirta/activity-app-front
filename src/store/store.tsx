@@ -11,7 +11,6 @@ const reducer = combineReducers({
   user: userReducer
 })
 const configureStore = () => {
-  initializeActivitiesReducer()
   return createStore(
     reducer,
     applyMiddleware(thunk)

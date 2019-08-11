@@ -15,7 +15,9 @@ class App extends Component<any, any> {
     const loginDataString = window.localStorage.getItem('FitnessAppUser')
     if (loginDataString !== null) {
       this.props.setUser(JSON.parse(loginDataString))
-    }    
+      console.log("Logged in user", JSON.parse(loginDataString))
+      this.props.initializeActivities(JSON.parse(loginDataString).stravaAccessToken)
+    }
   }
   getStravaAuthentication = async (event:any) => {
     event.preventDefault() 
@@ -24,7 +26,7 @@ class App extends Component<any, any> {
     const stravaAuthUrl = "http://www.strava.com/oauth/authorize?"
       + "client_id=33120&response_type=code&redirect_uri=" 
       + redirectUrl + "&"
-      + "approval_prompt=force&scope=profile:write,activity:write"
+      + "approval_prompt=force&scope=profile:write,activity:write,activity:read_all"
       window.location.href = stravaAuthUrl  
   }
   render() {
