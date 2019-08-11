@@ -1,49 +1,57 @@
-import React, { Props } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { addUser } from '../../store/user/user-reducer'
-import { FormGroup, FormControl, FormLabel, Button } from 'react-bootstrap'
-import User from '../../models/User'
+import { FormGroup, FormControl, FormLabel,
+  Button } from 'react-bootstrap'
+import IUser from '../../models/User'
+import { IProps, IInputChangeEvent } from './types'
 
-interface IProps {
-  addUser: Function
-}
+const addUserComponent: React.SFC<IProps> = (props: IProps) => {
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
 
-const addUserHandler = (props:IProps) => (event: any) => {
-  event.preventDefault()
-  const user:User = {
-    firstName: event.target.firstName.value,
-    lastName: event.target.lastName.value,
-    username: event.target.username.value,
-    password: event.target.password.value 
+  const handleSubmit = () => {
+    const user: IUser = {
+      firstName, lastName, username, password
+    }
+    props.addUser(user)
   }
-  console.log("clearing")
-  event.target.firstName.value = ""
-  event.target.lastName.value = ""
-  event.target.username.value = ""
-  event.target.password.value = ""
 
-  props.addUser(user)
-}
-const addUserComponent: React.SFC<IProps> = (props:IProps) => {
+  const handleFirstNameChange = (event: IInputChangeEvent) => {
+    setFirstName((event.currentTarget as any).value)
+  }
+  const handleLastNameChange = (event: IInputChangeEvent) => {
+    setLastName((event.currentTarget as any).value)
+  }
+  const handleUsernameChange = (event: IInputChangeEvent) => {
+    setUsername((event.currentTarget as any).value)
+  }
+  const handlePasswordChange = (event: IInputChangeEvent) => {
+    setPassword((event.currentTarget as any).value)
+  }
   return (
     <div>
-      <form onSubmit={addUserHandler(props)}>
-        <FormGroup>
-          <FormLabel>First name</FormLabel>
-          <FormControl type="text" name="firstName" placeholder="Enter first name" />
+      <FormGroup>
+        <FormLabel>First name</FormLabel>
+        <FormControl onChange={handleFirstNameChange} type="text"
+          name="firstName" placeholder="Enter first name" />
 
-          <FormLabel>Last name</FormLabel>
-          <FormControl type="text" name="lastName" placeholder="Enter last name" />
+        <FormLabel>Last name</FormLabel>
+        <FormControl onChange={handleLastNameChange} type="text"
+          name="lastName" placeholder="Enter last name" />
 
-          <FormLabel>Username</FormLabel>
-          <FormControl type="text" name="username" placeholder="Enter username" />
+        <FormLabel>Username</FormLabel>
+        <FormControl onChange={handleUsernameChange} type="text"
+          name="username" placeholder="Enter username" />
 
-          <FormLabel>Password</FormLabel>
-          <FormControl type="password" name="password" />
+        <FormLabel>Password</FormLabel>
+        <FormControl onChange={handlePasswordChange} type="password"
+          name="password" placeholder="Enter password" />
 
-          <Button type="submit">Login</Button>
-        </FormGroup>
-      </form>
+        <Button onClick={handleSubmit}>Login</Button>
+      </FormGroup>
     </div>
   )
 }
