@@ -4,10 +4,10 @@
 */
 
 import * as React from 'react'
-import User from '../../models/User'
+import IUser from '../../models/User'
 
-class UserTest extends React.Component<User, any> {
-  constructor(props: User) {
+class UserTest extends React.Component<IUser, any> {
+  constructor(props: IUser) {
     super(props)
   }
   render() {

@@ -1,24 +1,35 @@
 import { Dispatch } from 'redux'
 import { SET_USER, ActivitiesActionTypes } from './types'
-import User from '../../models/User'
+import IUser from '../../models/User'
 import userService from '../../services/user'
+import loginService from '../../services/login'
+import { ICredentials } from '../../models/Credentials';
 
-const initialState:User = {
+const initialState: IUser = {
   firstName: 'first',
   lastName: 'lastname',
   username: 'username'
 }
 export const reducer = (
   state = initialState,
-  action: ActivitiesActionTypes): User =>
-  {
-    if (action.type === SET_USER) {
-      return action.data
-    }
-    return state
+  action: ActivitiesActionTypes): IUser => {
+  if (action.type === SET_USER) {
+    return action.data
+  }
+  return state
+}
+export const login = (creds: ICredentials) => {
+  return async (dispatch: Dispatch) => {
+    const user: IUser = await loginService.post(creds)
+    window.localStorage.setItem('FitnessAppUser', JSON.stringify(user))
+    dispatch({
+      type: SET_USER,
+      data: user
+    })
   }
 
-export const setUser = (user:User) => {
+}
+export const setUser = (user: IUser) => {
   return async (dispatch: Dispatch) => {
     dispatch({
       type: SET_USER,
@@ -27,9 +38,10 @@ export const setUser = (user:User) => {
   }
 }
 
-export const addUser = (user:User) => {  
+export const addUser = (user: IUser) => {
   return async (dispatch: Dispatch) => {
-    user = await userService.post(user)
+    const addedUser: IUser = await userService.post(user)
+    window.localStorage.setItem('FitnessAppUser', JSON.stringify(addedUser))
     dispatch({
       type: SET_USER,
       data: user

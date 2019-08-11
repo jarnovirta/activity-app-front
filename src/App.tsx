@@ -5,8 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import Home from './components/home'
 import { initializeActivities } from './store/activities/activities-reducer'
 import { setUser } from './store/user/user-reducer'
-import userService from './services/user'
-import oauthService from './services/oauth'
+import oauthService from './services/strava-auth'
 
 
 const getStravaAuthentication = async (event:any) => {
@@ -21,10 +20,10 @@ const getStravaAuthentication = async (event:any) => {
 
 class App extends Component<any, any> {
   componentDidMount = async () => {
-    this.props.initializeActivities()
-    const userString = window.localStorage.getItem('FitnessAppUser')
-    if (userString !== null) {
-      this.props.setUser(JSON.parse(userString))
+    // this.props.initializeActivities()
+    const loginDataString = window.localStorage.getItem('FitnessAppUser')
+    if (loginDataString !== null) {
+      this.props.setUser(JSON.parse(loginDataString))
     }    
   }
   render() {

@@ -6,17 +6,19 @@ import { FormGroup, FormControl, FormLabel,
 import IUser from '../../models/User'
 import { IProps, IInputChangeEvent } from './types'
 
+
 const addUserComponent: React.SFC<IProps> = (props: IProps) => {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleSubmit = () => {
+  const handleSubmit = () => {    
     const user: IUser = {
       firstName, lastName, username, password
-    }
-    props.addUser(user)
+    };
+    (document.getElementById("addUserForm") as HTMLFormElement).reset()    
+    props.addUser(user)    
   }
 
   const handleFirstNameChange = (event: IInputChangeEvent) => {
@@ -33,6 +35,7 @@ const addUserComponent: React.SFC<IProps> = (props: IProps) => {
   }
   return (
     <div>
+      <form id="addUserForm">
       <FormGroup>
         <FormLabel>First name</FormLabel>
         <FormControl onChange={handleFirstNameChange} type="text"
@@ -50,8 +53,9 @@ const addUserComponent: React.SFC<IProps> = (props: IProps) => {
         <FormControl onChange={handlePasswordChange} type="password"
           name="password" placeholder="Enter password" />
 
-        <Button onClick={handleSubmit}>Login</Button>
+        <Button onClick={handleSubmit}>Submit</Button>
       </FormGroup>
+      </form>
     </div>
   )
 }
