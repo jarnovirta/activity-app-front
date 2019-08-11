@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { login } from '../../store/user/user-reducer'
-import {
-  FormGroup, FormControl, FormLabel,
-  Button
-} from 'react-bootstrap'
+import { FormGroup, FormControl, FormLabel, Button } from 'react-bootstrap'
 import { IProps, IInputChangeEvent } from './types'
 import { ICredentials } from './../../models/Credentials'
 
@@ -20,10 +17,10 @@ const loginComponent: React.SFC<IProps> = (props: IProps) => {
     props.login(creds)
   }
   const handleUsernameChange = (event: IInputChangeEvent) => {
-    setUsername((event.currentTarget as any).value)
+    setUsername((event.target as HTMLInputElement).value)
   }
   const handlePasswordChange = (event: IInputChangeEvent) => {
-    setPassword((event.currentTarget as any).value)
+    setPassword((event.target as HTMLInputElement).value)
   }
   return (
     <div>

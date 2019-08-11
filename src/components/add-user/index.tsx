@@ -22,16 +22,16 @@ const addUserComponent: React.SFC<IProps> = (props: IProps) => {
   }
 
   const handleFirstNameChange = (event: IInputChangeEvent) => {
-    setFirstName((event.currentTarget as any).value)
+    setFirstName((event.target as HTMLInputElement).value)
   }
   const handleLastNameChange = (event: IInputChangeEvent) => {
-    setLastName((event.currentTarget as any).value)
+    setLastName((event.target as HTMLInputElement).value)
   }
   const handleUsernameChange = (event: IInputChangeEvent) => {
-    setUsername((event.currentTarget as any).value)
+    setUsername((event.target as HTMLInputElement).value)
   }
   const handlePasswordChange = (event: IInputChangeEvent) => {
-    setPassword((event.currentTarget as any).value)
+    setPassword((event.target as HTMLInputElement).value)
   }
   return (
     <div>
