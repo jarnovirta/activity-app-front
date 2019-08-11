@@ -18,3 +18,4 @@ const configureStore = () => {
   )
 }
 export default configureStore()
+export type AppState = ReturnType<typeof reducer>

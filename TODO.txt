@@ -1,4 +1,1 @@
-"Mun pro tip on, et pistää strictNullChecks päälle. Sillon
-sun pitää erikseen tarkistaa esim localStorage.getItem():n
-palauttama arvo ettei se oo undefined"
-"Samoin interfaceissa ja luokissa undefined- operatorin olemassaolo"
+TypeScript + Redux: https://redux.js.org/recipes/usage-with-typescript

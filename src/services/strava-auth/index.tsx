@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = '/api/oauth'
+const baseUrl = '/api/stravaauth'
 
 const getRedirectUrl = async ():Promise<String> => {
     const response = await axios.get(`${baseUrl}/redirectUrl`)
