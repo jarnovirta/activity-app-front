@@ -6,12 +6,11 @@ import loginService from '../../services/login'
 import { ICredentials } from '../../models/Credentials';
 
 const initialState: IUser = {
-  firstName: 'first',
-  lastName: 'lastname',
-  username: 'username'
+  firstName: '',
+  lastName: '',
+  username: ''
 }
-export const reducer = (
-  state = initialState,
+export const reducer = (state:IUser = initialState,
   action: ActivitiesActionTypes): IUser => {
   if (action.type === SET_USER) {
     return action.data

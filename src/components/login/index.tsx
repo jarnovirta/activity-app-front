@@ -4,17 +4,19 @@ import { login } from '../../store/user/user-reducer'
 import { FormGroup, FormControl, FormLabel, Button } from 'react-bootstrap'
 import { IProps, IInputChangeEvent } from './types'
 import { ICredentials } from './../../models/Credentials'
+import { withRouter } from 'react-router'
 
-const loginComponent: React.SFC<IProps> = (props: IProps) => {
+const Login: React.SFC<IProps> = (props: IProps) => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-
+  
   const handleSubmit = () => {
     const creds: ICredentials = {
       username, password
     };
     (document.getElementById("loginForm") as HTMLFormElement).reset()
     props.login(creds)
+    props.history.push("/")
   }
   const handleUsernameChange = (event: IInputChangeEvent) => {
     setUsername((event.target as HTMLInputElement).value)
@@ -22,7 +24,7 @@ const loginComponent: React.SFC<IProps> = (props: IProps) => {
   const handlePasswordChange = (event: IInputChangeEvent) => {
     setPassword((event.target as HTMLInputElement).value)
   }
-  return (
+  return (    
     <div>
       <h4>Login</h4>
       <form id="loginForm">
@@ -45,4 +47,5 @@ const loginComponent: React.SFC<IProps> = (props: IProps) => {
 const mapDispatchersToProps = {
   login
 }
-export default connect(null, mapDispatchersToProps)(loginComponent)
+
+export default withRouter(connect(null, mapDispatchersToProps)(Login))

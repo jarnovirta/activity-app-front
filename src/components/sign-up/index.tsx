@@ -5,9 +5,9 @@ import { FormGroup, FormControl, FormLabel,
   Button } from 'react-bootstrap'
 import IUser from '../../models/User'
 import { IProps, IInputChangeEvent } from './types'
+import { withRouter } from 'react-router'
 
-
-const addUserComponent: React.SFC<IProps> = (props: IProps) => {
+const Signup: React.SFC<IProps> = (props: IProps) => {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [username, setUsername] = useState("")
@@ -17,8 +17,9 @@ const addUserComponent: React.SFC<IProps> = (props: IProps) => {
     const user: IUser = {
       firstName, lastName, username, password
     };
-    (document.getElementById("addUserForm") as HTMLFormElement).reset()    
+    (document.getElementById("addUserForm") as HTMLFormElement).reset()
     props.addUser(user)    
+    props.history.push("/")
   }
 
   const handleFirstNameChange = (event: IInputChangeEvent) => {
@@ -63,4 +64,4 @@ const addUserComponent: React.SFC<IProps> = (props: IProps) => {
 const mapDispatchersToProps = {
   addUser
 }
-export default connect(null, mapDispatchersToProps)(addUserComponent)
+export default withRouter(connect(null, mapDispatchersToProps)(Signup))
