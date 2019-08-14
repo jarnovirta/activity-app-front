@@ -56,8 +56,8 @@ const Profile: React.FunctionComponent<IProps> = (props: IProps) => {
 const mapStateToProps = (state: any) => {
   return {
     user: state.user,
-    activitiesCount: state.activities.length,
-    latestActivity: filterLatestActivity(state.activities)
+    activitiesCount: state.activities.activityList.length,
+    latestActivity: filterLatestActivity(state.activities.activityList)
   }
 }
 export default connect(mapStateToProps)(Profile)

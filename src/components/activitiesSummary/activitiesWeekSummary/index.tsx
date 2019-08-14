@@ -62,7 +62,7 @@ const ActivitiesWeekSummary: React.FunctionComponent<IProps> = (props: IProps) =
 const mapStateToProps = (state: any) => {
   return {
     activities: filterActivities(
-      state.activities,
+      state.activities.activityList,
       state.activitiesSummary.selectedActivity)
   }
 }
