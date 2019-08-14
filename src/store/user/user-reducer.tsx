@@ -1,19 +1,17 @@
 import { Dispatch } from 'redux'
-import { SET_USER, ActivitiesActionTypes } from './types'
+import { SET_USER, LOGOUT_USER, UserActionTypes } from './types'
 import IUser from '../../models/User'
 import userService from '../../services/user'
 import loginService from '../../services/login'
 import { ICredentials } from '../../models/Credentials';
 
-const initialState: IUser = {
-  firstName: '',
-  lastName: '',
-  username: ''
-}
-export const reducer = (state:IUser = initialState,
-  action: ActivitiesActionTypes): IUser => {
+export const reducer = (state:IUser = {} as IUser,
+  action: UserActionTypes): IUser => {
   if (action.type === SET_USER) {
     return action.data
+  }
+  if (action.type === LOGOUT_USER) {
+    return {} as IUser
   }
   return state
 }
@@ -26,7 +24,14 @@ export const login = (creds: ICredentials) => {
       data: user
     })
   }
-
+}
+export const logout = () => {
+  return (dispatch: Dispatch) => {
+    window.localStorage.removeItem('FitnessAppUser')
+    dispatch({
+      type: LOGOUT_USER
+    })
+  }
 }
 export const setUser = (user: IUser) => {
   return async (dispatch: Dispatch) => {

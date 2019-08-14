@@ -5,22 +5,18 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './components/home'
 import { initializeActivities } from './store/activities/activities-reducer'
 import { setUser } from './store/user/user-reducer'
-import { Nav, NavItem } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
 import { AppState } from './store/store'
+import Navigation from './components/navigation'
 import Login from './components/login'
 import Signup from './components/sign-up'
 
 class App extends Component<any, any> {
   componentDidMount = async () => {
-    // this.props.initializeActivities()
-    
     const loginDataString = window.localStorage.getItem('FitnessAppUser')
-    if (loginDataString !== null) {
+    if (loginDataString !== null && loginDataString !== '') {
       this.props.setUser(JSON.parse(loginDataString))
       this.props.initializeActivities(JSON.parse(loginDataString).stravaAccessToken)
-    }
-    
+    }    
   }
   getStravaAuthentication = async (event: any) => {
     event.preventDefault()
@@ -33,22 +29,9 @@ class App extends Component<any, any> {
   }
 
   render() {
-    const Menu = () => (
-      <div>
-        <Nav variant="pills">
-          <LinkContainer exact to="/">
-            <Nav.Link eventKey="/">Home</Nav.Link>
-          </LinkContainer>
-         {/* <LinkContainer to="/login">
-            <Nav.Link eventKey="/login">Login</Nav.Link>
-          </LinkContainer>  */}
-        </Nav>
-      </div>
-    )
-    const loggedIn = !this.props.user ? false : this.props.user.username != ''
+    const loggedIn = !this.props.user ? false : this.props.user.username ? true : false
     const showWhenLoggedIn = { display: loggedIn ? '' : 'none' }
     const showWhenNotLoggedIn = { display: loggedIn ? 'none' : '' }
-    
     return (      
       <div className="container">
         <Router>
@@ -57,7 +40,7 @@ class App extends Component<any, any> {
               <Login />
             </div>
             <div style={showWhenLoggedIn}>
-              <Menu />
+              <Navigation />
               <Route exact path="/" render={() => <Home />} />
               <Route path="/login" render={() => <Login />} />
               <Route path="/signup" render={() => <Signup />} />

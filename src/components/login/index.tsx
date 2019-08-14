@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { login } from '../../store/user/user-reducer'
 import { FormGroup, FormControl, FormLabel, Button } from 'react-bootstrap'
 import { IProps, IInputChangeEvent } from './types'
-import { ICredentials } from './../../models/Credentials'
+import { ICredentials } from '../../models/Credentials'
 import { withRouter } from 'react-router'
 
 const Login: React.SFC<IProps> = (props: IProps) => {
@@ -36,7 +36,6 @@ const Login: React.SFC<IProps> = (props: IProps) => {
           <FormLabel>Password</FormLabel>
           <FormControl onChange={handlePasswordChange} type="password"
             id="password" name="password" placeholder="Enter password" />
-
           <Button onClick={handleSubmit}>Login</Button>
         </FormGroup>
       </form>
