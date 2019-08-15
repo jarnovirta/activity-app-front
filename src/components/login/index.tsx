@@ -9,7 +9,7 @@ import { withRouter } from 'react-router'
 const Login: React.SFC<IProps> = (props: IProps) => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  
+
   const handleSubmit = () => {
     const creds: ICredentials = {
       username, password
@@ -24,7 +24,7 @@ const Login: React.SFC<IProps> = (props: IProps) => {
   const handlePasswordChange = (event: IInputChangeEvent) => {
     setPassword((event.target as HTMLInputElement).value)
   }
-  return (    
+  return (
     <div>
       <h4>Login</h4>
       <form id="loginForm">
@@ -32,7 +32,6 @@ const Login: React.SFC<IProps> = (props: IProps) => {
           <FormLabel>Username</FormLabel>
           <FormControl id="username" onChange={handleUsernameChange} type="text"
             name="username" placeholder="Enter username" />
-
           <FormLabel>Password</FormLabel>
           <FormControl onChange={handlePasswordChange} type="password"
             id="password" name="password" placeholder="Enter password" />

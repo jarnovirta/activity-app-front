@@ -1,5 +1,5 @@
 import './App.css'
-import React, { Component, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './components/home'
@@ -24,10 +24,7 @@ const getLoggedInUser = async (props: IProps) => {
 }
 const initializeState = async (props: IProps) => {
   if (!props.user.username) getLoggedInUser(props)
-  console.log("Activities initialized", props.activities.initialized)
-  
   if (!props.activities.initialized && props.user.username) {    
-    console.log("app component initializing activities")
     props.initializeActivities(props.user.stravaToken)
   }
 }
@@ -45,25 +42,14 @@ const App = (props: IProps) => {
       + "approval_prompt=force&scope=profile:write,activity:write,activity:read_all"
     window.location.href = stravaAuthUrl
   }
-  const loggedIn = !props.user ? false : props.user.username ? true : false
-  const showWhenLoggedIn = { display: loggedIn ? '' : 'none' }
-  const showWhenNotLoggedIn = { display: loggedIn ? 'none' : '' }
-
   return (
     <div className="container">
       <Router>
         <div>
-          <div style={showWhenNotLoggedIn}>
+          <Navigation />          
             <Route path="/login" render={() => <Login />} />
             <Route path="/signup" render={() => <Signup />} />
-          </div>
-          <div style={showWhenLoggedIn}>
-            <Navigation />
-            <button onClick={getStravaAuthentication()}>Authenticate</button>
-            <Route exact path="/" render={() => <Home />} />
-            <Route path="/login" render={() => <Login />} />
-            
-          </div>
+            <Route exact path="/" render={() => <Home />} />          
         </div>
       </Router>
     </div>
@@ -75,6 +61,5 @@ const mapStateToProps = (state: AppState) => ({
 })
 const mapDispatchersToProps = {
   initializeActivities, setUser
-
 }
 export default connect(mapStateToProps, mapDispatchersToProps)(App)

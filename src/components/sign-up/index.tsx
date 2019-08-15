@@ -37,6 +37,7 @@ const Signup: React.SFC<IProps> = (props: IProps) => {
   return (
     <div>
       <form id="addUserForm">
+      <h4>Sign Up</h4>
       <FormGroup>
         <FormLabel>First name</FormLabel>
         <FormControl onChange={handleFirstNameChange} type="text"
@@ -53,7 +54,6 @@ const Signup: React.SFC<IProps> = (props: IProps) => {
         <FormLabel>Password</FormLabel>
         <FormControl onChange={handlePasswordChange} type="password"
           name="password" placeholder="Enter password" />
-
         <Button onClick={handleSubmit}>Submit</Button>
       </FormGroup>
       </form>
