@@ -4,9 +4,7 @@ import IStravaToken from '../../models/IStravaToken'
 import stravaAuthService from './../strava-auth'
 
 export const tokenInterceptor = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
-  // if (!(config.url as string).startsWith("https://www.strava.com")) return config
   const loginDataString = window.localStorage.getItem('FitnessAppUser')
-  console.log("TokenInterceptor")
   if (!loginDataString) throw new Error('User not logged in')
   const user: IUser = JSON.parse(loginDataString) 
   if (!user.stravaToken || !user.id) return config
