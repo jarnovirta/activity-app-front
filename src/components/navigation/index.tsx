@@ -42,10 +42,13 @@ const Navigation = (props: IProps) => {
       </Nav>
     )
   }
+  const homeLinkPath = props.user.loginStatus === "LOGGED_IN" ? 
+    '/home' : '/'
   return (
     <div>
       <Navbar bg="light" expand="lg">
-        <LinkContainer exact to="/">
+        
+        <LinkContainer exact to={homeLinkPath}>
           <Navbar.Brand>Fitness App</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
