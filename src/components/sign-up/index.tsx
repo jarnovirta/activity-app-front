@@ -13,12 +13,12 @@ const Signup: React.SFC<IProps> = (props: IProps) => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleSubmit = () => {    
+  const handleSubmit = async () => {    
     const user: IUser = {
       firstName, lastName, username, password
     };
     (document.getElementById("addUserForm") as HTMLFormElement).reset()
-    props.addUser(user)    
+    await props.addUser(user)    
     props.history.push("/")
   }
 

@@ -10,12 +10,12 @@ const Login: React.SFC<IProps> = (props: IProps) => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const creds: ICredentials = {
       username, password
     };
     (document.getElementById("loginForm") as HTMLFormElement).reset()
-    props.login(creds)
+    await props.login(creds)
     props.history.push("/")
   }
   const handleUsernameChange = (event: IInputChangeEvent) => {

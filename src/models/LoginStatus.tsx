@@ -1,0 +1,1 @@
+export type LoginStatus = "LOGGED_IN" | "NOT_LOGGED_IN" | "NOT_CHECKED"
