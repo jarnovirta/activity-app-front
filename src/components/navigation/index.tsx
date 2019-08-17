@@ -28,8 +28,8 @@ const Navigation = (props: IProps) => {
   const loggedInNavItems = () => {
     return (
       <Nav className="mr-auto">
-        <LinkContainer exact to="/">
-          <Nav.Link eventKey="/">Home</Nav.Link>
+        <LinkContainer exact to="/home">
+          <Nav.Link eventKey="/home">Home</Nav.Link>
         </LinkContainer>
         <Nav.Link onClick={() => props.logout()}>Logout</Nav.Link>
         <NavDropdown title="Dropdown" id="basic-nav-dropdown">

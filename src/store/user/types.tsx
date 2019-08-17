@@ -2,6 +2,7 @@ import IUser from "../../models/User";
 
 export const SET_USER = 'SET_USER'
 export const LOGOUT_USER = 'LOGOUT_USER'
+export const LOGIN_FAILED = 'LOGIN_FAILED'
 
 interface SetUserAction {
   type: typeof SET_USER,
@@ -10,5 +11,8 @@ interface SetUserAction {
 interface LogoutUserAction {
   type: typeof LOGOUT_USER  
 }
+interface LoginFailedAction {
+  type: typeof LOGIN_FAILED
+}
 
-export type UserActionTypes = SetUserAction | LogoutUserAction
+export type UserActionTypes = SetUserAction | LogoutUserAction | LoginFailedAction

@@ -5,7 +5,7 @@ export default interface IUser {
   firstName: string,
   id?: string,
   lastName: string,
-  logInStatus?: LoginStatus,
+  loginStatus?: LoginStatus,
   stravaToken?: IStravaToken,
   username: string,
   password?: string,
