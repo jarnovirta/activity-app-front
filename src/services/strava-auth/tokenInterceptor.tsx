@@ -1,18 +1,15 @@
 import { AxiosRequestConfig } from 'axios'
 import IUser from '../../models/User'
 import stravaAuthService from './../strava-auth'
-import IStravaToken from '../../models/IStravaToken';
 
-let user: IUser
-let updateUser: Function
+let user:IUser
 
-export const tokenInterceptor = (token: IStravaToken, setUser: Function) => async (config: AxiosRequestConfig): 
+export const tokenInterceptor = (newUser: IUser) => async (config: AxiosRequestConfig): 
     Promise<AxiosRequestConfig> => {  
-  const timeToTokenExpiration = token.expiresAt - (new Date().getTime() / 1000)
+  user = newUser
+  const timeToTokenExpiration = user.stravaToken!.expiresAt - (new Date().getTime() / 1000)
   if (timeToTokenExpiration < 0) {
-    console.log("Interceptor refreshing token!")
-    user.stravaToken = await stravaAuthService.refreshToken(user.id!)
-    setUser(user)
+    user.stravaToken = await stravaAuthService.refreshToken(user.id!)    
   }
   config.headers = {
     ...config.headers,

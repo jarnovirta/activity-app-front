@@ -5,6 +5,7 @@ import userService from '../../services/user'
 import loginService from '../../services/login'
 import { ICredentials } from '../../models/Credentials';
 import { AxiosResponse } from 'axios';
+import activityService from './../../services/activities'
 
 export const reducer = (state: IUser = { loginStatus: "NOT_CHECKED" } as IUser,
   action: UserActionTypes): IUser => {
@@ -42,6 +43,7 @@ export const loginFailed = () => {
 export const logout = () => {
   return async (dispatch: Dispatch) => {
     await loginService.logout()
+    activityService.ejectInterceptor()
     dispatch({
       type: LOGOUT_USER
     })
@@ -49,7 +51,6 @@ export const logout = () => {
 }
 export const setUser = (user: IUser) => {
   return (dispatch: Dispatch) => {
-    console.log("DISPATCHING ", user)
     dispatch({
       type: SET_USER,
       data: user

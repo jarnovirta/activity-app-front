@@ -28,15 +28,9 @@ interface IProps extends RouteComponentProps<any> {
 const initialize = async (props: IProps) => {
   if (props.user.loginStatus === "NOT_CHECKED") {
     try {
-      console.log("Checking user login")
       const response = await loginService.currentUser()
       const user = response.data
-      console.log("setting user", user)
       props.setUser(user)
-      
-      if (user.stravaToken && user.stravaToken.accessToken) {        
-        activitiesService.setUpdateUserState(props.setUser)
-      }
     }
     catch (e) {
       if (e.response && e.response.status === 401) {
@@ -44,33 +38,33 @@ const initialize = async (props: IProps) => {
         props.loginFailed()
       }
       else console.log(e)
+    }    
+  }
+  if (props.user.loginStatus === "LOGGED_IN" && !props.activities.initialized) {
+    if (props.user.stravaToken && props.user.stravaToken.accessToken) {        
+      activitiesService.setInterceptor(props.user)
+      props.initializeActivities()
     }
-    console.log("Initializing")
-    props.initializeActivities()
-    props.initializeActivities()
-    props.initializeActivities()
   }
 }
-
+const enforceRoutes = (props: IProps) => {
+  const userLoginStatus: LoginStatus = props.user.loginStatus as LoginStatus
+  const isLoginPending = userLoginStatus === "NOT_CHECKED"
+  const isLoggedIn = isLoginPending || userLoginStatus === "LOGGED_IN"
+  const isNotAuthorizedToStrava = isLoggedIn && props.user.stravaToken && !props.user.stravaToken.accessToken
+  const path = props.history.location.pathname
+  const notLoggedInPaths:Array<string> = ['/','/login', '/signup', '/requestAuthorization']
+  
+  if (isLoggedIn && isNotAuthorizedToStrava && path !== '/requestAuthorization') props.history.push('/requestAuthorization')
+  else if (isLoggedIn && notLoggedInPaths.includes(path)) props.history.push('/home')
+  else if (!isLoggedIn && !(notLoggedInPaths.includes(path))) props.history.push('/login')
+  
+}
 const App: React.SFC<IProps> = (props: IProps) => {
   useEffect(() => {
     initialize(props)
+    enforceRoutes(props)
   }, [props])
-
-  const userLoginStatus: LoginStatus = props.user.loginStatus as LoginStatus
-  const ControlledRoute = ({ component, isAccessible, redirectTo, ...rest }: any) => {
-    const routeComponent = (props: any) => (
-      isAccessible
-        ? React.createElement(component, props)
-        : <Redirect to={{ pathname: redirectTo }} />
-    )
-    return <Route {...rest} render={routeComponent} />
-  }
-
-  const isLoginPending = userLoginStatus === "NOT_CHECKED"
-  const isLoggedIn = userLoginStatus === "LOGGED_IN"
-  const isNotLoggedIn = userLoginStatus === "NOT_LOGGED_IN"
-  const isNotAuthorizedToStrava = isLoggedIn && props.user.stravaToken && !props.user.stravaToken.accessToken
 
   const LoginPendingView = () => {
     return (
@@ -84,30 +78,12 @@ const App: React.SFC<IProps> = (props: IProps) => {
     return (
       <div>
         {/*USER NOT LOGGED IN */}
-        <ControlledRoute exact path='/' redirectTo="/home"
-          isAccessible={isNotLoggedIn}
-          component={Welcome}
-        />
-        <ControlledRoute path='/login' redirectTo="/home"
-          isAccessible={isNotLoggedIn}
-          component={Login}
-        />
-        <ControlledRoute path='/signup' redirectTo="/home"
-          isAccessible={isNotLoggedIn}
-          component={Signup}
-        />
-
-        {/* USER LOGGED IN BUT NO AUTHORIZATION TO STRAVA  */}
-        <ControlledRoute path='/requestAuthorization' redirectTo="/home"
-          isAccessible={isNotAuthorizedToStrava}
-          component={RequestAuthorization}
-        />
-
-        {/* USER LOGGED IN  */}
-        <ControlledRoute path='/home' redirectTo="/login"
-          isAccessible={isLoggedIn}
-          component={Home}
-        />
+        
+        <Route exact path='/' component={Welcome} />
+        <Route path='/home' component={Home} />
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/signup' component={Signup} />
+        <Route exact path='/requestAuthorization' component={RequestAuthorization} />
       </div>
     )
   }
@@ -115,7 +91,7 @@ const App: React.SFC<IProps> = (props: IProps) => {
   return (
     <div className="container">
       <Navigation />
-      { isLoginPending ? LoginPendingView() : LoginCheckedView() }
+      { props.user.loginStatus === "NOT_CHECKED" ? LoginPendingView() : LoginCheckedView() }
     </div>
   )
 }
