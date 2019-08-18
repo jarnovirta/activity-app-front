@@ -3,8 +3,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Card, ListGroup } from 'react-bootstrap'
 import { StravaDetailedActivity } from '../../models/strava/strava-detailed-activity-iots'
-import ActivitiesWeekSummary from './activitiesWeekSummary'
-import ActivityButtons from './activityButtons'
+import ActivitiesWeekSummary from './Activities-Week-Summary/Activities-Week-Summary'
+import ActivityButtons from './Activity-Buttons'
 
 interface IProps {
   activities: Array<StravaDetailedActivity>

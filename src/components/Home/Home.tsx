@@ -1,7 +1,7 @@
 import './index.css'
 import React from 'react'
-import Profile from './../profile'
-import ActivitiesSummary from '../activitiesSummary'
+import Profile from '../Profile/Profile'
+import ActivitiesSummary from '../Activities-Summary'
 
 const Home = () => {
   return (

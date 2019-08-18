@@ -2,18 +2,18 @@ import './App.css'
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Route, withRouter, RouteComponentProps, Redirect } from 'react-router-dom'
-import Home from './components/home'
+import Home from './components/Home/Home'
 import { initializeActivities } from './store/activities/activities-reducer'
 import { setUser, loginFailed } from './store/user/user-reducer'
 import { AppState } from './store/store'
-import Navigation from './components/navigation'
-import Login from './components/login'
-import Signup from './components/sign-up'
+import Navigation from './components/Navigation/Navigation'
+import Login from './components/Login/Login'
+import Signup from './components/Sign-Up/Sign-Up'
 import IUser from './models/User'
 import { IActivitiesState } from './store/activities/types';
-import RequestAuthorization from './components/request-authorization';
+import RequestAuthorization from './components/Request-Authorization/Request-Authorization';
 import loginService from './services/login'
-import Welcome from './components/welcome';
+import Welcome from './components/Welcome';
 import activitiesService from './services/activities'
 import { LoginStatus } from './models/LoginStatus';
 
