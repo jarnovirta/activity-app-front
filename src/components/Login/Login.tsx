@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { login } from '../../store/user/user-reducer'
+import { login } from '../../store/user/thunks'
 import { FormGroup, FormControl, FormLabel, Button } from 'react-bootstrap'
-import { IProps as ILoginProps, IInputChangeEvent } from './types'
-import { ICredentials } from '../../common-types/user'
+import { ILoginProps, IInputChangeEvent } from './types'
+import { ILoginCredentials } from '../../common-types/user'
 import { withRouter } from 'react-router'
 
 const Login: React.SFC<ILoginProps> = (props: ILoginProps) => {
@@ -11,7 +11,7 @@ const Login: React.SFC<ILoginProps> = (props: ILoginProps) => {
   const [password, setPassword] = useState('')
 
   const handleSubmit = async () => {
-    const creds: ICredentials = {
+    const creds: ILoginCredentials = {
       username, password
     };
     (document.getElementById('loginForm') as HTMLFormElement).reset()

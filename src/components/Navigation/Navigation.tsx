@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import { logout } from '../../store/user/user-reducer'
+import { logout } from '../../store/user/thunks'
 import { AppState } from '../../store/store'
 import { INavigationProps } from './types'
 

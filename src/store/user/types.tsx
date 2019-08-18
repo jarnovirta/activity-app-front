@@ -1,22 +1,15 @@
 import { IUser } from '../../common-types/user'
+import { SET_USER, LOGOUT_USER, LOGIN_FAILED } from './constants'
 
-export const SET_USER = 'SET_USER'
-export const LOGOUT_USER = 'LOGOUT_USER'
-export const LOGIN_FAILED = 'LOGIN_FAILED'
-
-export interface ICredentials {
-  username: string,
-  password: string
-}
-interface SetUserAction {
+interface ISetUserAction {
   type: typeof SET_USER,
   data: IUser
 }
-interface LogoutUserAction {
+interface ILogoutUserAction {
   type: typeof LOGOUT_USER  
 }
-interface LoginFailedAction {
+interface ILoginFailedAction {
   type: typeof LOGIN_FAILED
 }
 
-export type UserActionTypes = SetUserAction | LogoutUserAction | LoginFailedAction
+export type TUserActionTypes = ISetUserAction | ILogoutUserAction | ILoginFailedAction

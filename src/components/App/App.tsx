@@ -1,34 +1,25 @@
 import './App.css'
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Route, withRouter, RouteComponentProps } from 'react-router-dom'
-import Home from './components/Home'
-import { initializeActivities } from './store/activities/activities-reducer'
-import { setUser, loginFailed } from './store/user/user-reducer'
-import { AppState } from './store/store'
-import Navigation from './components/Navigation'
-import Login from './components/Login'
-import Signup from './components/Sign-Up'
-import { IUser, TLoginStatus } from './common-types/user'
-import { IActivitiesState } from './store/activities/types'
-import RequestAuthorization from './components/Request-Authorization/Request-Authorization'
-import loginService from './services/login'
-import Welcome from './components/Welcome'
-import activitiesService from './services/activities'
+import { Route, withRouter } from 'react-router-dom'
+import Home from '../Home/Home'
+import { initializeActivities } from '../../store/activities/thunks'
+import { setUser, loginFailed } from '../../store/user/thunks'
+import { AppState } from '../../store/store'
+import Navigation from '../Navigation/Navigation'
+import Login from '../Login/Login'
+import Signup from '../Sign-Up/Sign-Up'
+import { TLoginStatus } from '../../common-types/user'
+import RequestAuthorization from '../Request-Authorization/Request-Authorization'
+import loginService from '../../services/login'
+import Welcome from '../Welcome/Welcome'
+import activitiesService from '../../services/activities'
+import { IAppProps } from './types'
 
-interface IProps extends RouteComponentProps<any> {
-  setUser: Function,
-  loginFailed: Function,
-  activities: IActivitiesState,
-  initializeActivities: Function,
-  user: IUser
-}
-
-const initialize = async (props: IProps) => {
+const initialize = async (props: IAppProps) => {
   if (props.user.loginStatus === 'NOT_CHECKED') {
     try {
-      const response = await loginService.currentUser()
-      const user = response.data
+      const user = await loginService.currentUser()
       props.setUser(user)
     }
     catch (e) {
@@ -46,7 +37,7 @@ const initialize = async (props: IProps) => {
     }
   }
 }
-const enforceRoutes = (props: IProps) => {
+const enforceRoutes = (props: IAppProps) => {
   const userLoginStatus: TLoginStatus = props.user.loginStatus as TLoginStatus
   const isLoginPending = userLoginStatus === 'NOT_CHECKED'
   const isLoggedIn = isLoginPending || userLoginStatus === 'LOGGED_IN'
@@ -59,7 +50,7 @@ const enforceRoutes = (props: IProps) => {
   else if (!isLoggedIn && !(notLoggedInPaths.includes(path))) props.history.push('/login')
   
 }
-const App: React.SFC<IProps> = (props: IProps) => {
+const App: React.SFC<IAppProps> = (props: IAppProps) => {
   useEffect(() => {
     initialize(props)
     enforceRoutes(props)

@@ -3,13 +3,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { ButtonGroup, Button } from 'react-bootstrap'
 import FontAwesome from 'react-fontawesome'
-import { StravaActivityType } from '../../../common-types/strava-api-data/strava-activity-type'
-import { setActivity } from '../../../store/activities-summary/activitiesSummaryReducer'
+import { StravaActivityTypes } from '../../../common-types/strava-api/data/strava-activity-type'
+import { setActivity } from '../../../store/activities-summary/thunks'
 import { IActivityButtonsProps } from './types'
 
 const ActivityButtons: React.FunctionComponent<IActivityButtonsProps> = (props: IActivityButtonsProps) => {
   const activityButtonStyle = { color: 'white', textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }
-  const handleSetActivityClick = (activity:StravaActivityType) => () => {
+  const handleSetActivityClick = (activity:StravaActivityTypes) => () => {
     props.setActivity(activity)
   }
   return (
@@ -17,8 +17,8 @@ const ActivityButtons: React.FunctionComponent<IActivityButtonsProps> = (props: 
       <ButtonGroup>
         <Button
           variant='secondary'
-          onClick={handleSetActivityClick(StravaActivityType.Ride)}
-          active={props.selectedActivity === StravaActivityType.Ride}>
+          onClick={handleSetActivityClick(StravaActivityTypes.Ride)}
+          active={props.selectedActivity === StravaActivityTypes.Ride}>
           <FontAwesome className='activityIcon'
             name='bicycle'
             size='2x'
@@ -27,8 +27,8 @@ const ActivityButtons: React.FunctionComponent<IActivityButtonsProps> = (props: 
         </Button>
         <Button
           variant='secondary'
-          onClick={handleSetActivityClick(StravaActivityType.Run)}
-          active={props.selectedActivity === StravaActivityType.Run}>
+          onClick={handleSetActivityClick(StravaActivityTypes.Run)}
+          active={props.selectedActivity === StravaActivityTypes.Run}>
           <FontAwesome
             name='running'
             size='2x'
@@ -36,8 +36,8 @@ const ActivityButtons: React.FunctionComponent<IActivityButtonsProps> = (props: 
           />
         </Button>
         <Button variant='secondary'
-          onClick={handleSetActivityClick(StravaActivityType.Swim)}
-          active={props.selectedActivity === StravaActivityType.Swim}>
+          onClick={handleSetActivityClick(StravaActivityTypes.Swim)}
+          active={props.selectedActivity === StravaActivityTypes.Swim}>
           <FontAwesome
             name='swimmer'
             size='2x'

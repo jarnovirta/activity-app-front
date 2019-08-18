@@ -1,6 +1,6 @@
-import IStravaActivityDetail from '../../../common-types/strava-api-data/strava-activity-detail'
+import IStravaActivityDetail from '../../../common-types/strava-api/data/strava-activity-detail'
 
-export interface IProps {
+export interface IWeekSummaryProps {
   activities: Array<IStravaActivityDetail>
 }
 export interface IChartData {

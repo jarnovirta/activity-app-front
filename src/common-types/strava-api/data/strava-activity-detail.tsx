@@ -1,4 +1,4 @@
-import { StravaActivityType } from './strava-activity-type'
+import { StravaActivityTypes } from './strava-activity-type'
 
 export default interface IStravaActivityDetail {
   id: number,             // activitys Strava-id
@@ -6,7 +6,7 @@ export default interface IStravaActivityDetail {
   distance: number,       // meters
   moving_time: number,    // seconds
   elapsed_time: number,   // seconds
-  type: StravaActivityType,
+  type: StravaActivityTypes,
   start_date_local: string,  // activity's local start time
   workout_type: number,
   average_speed: number,  // meters per second

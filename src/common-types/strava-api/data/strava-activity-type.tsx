@@ -1,5 +1,5 @@
 
-export enum StravaActivityType {
+export enum StravaActivityTypes {
   AlpineSki = 'AlpineSki', BackcountrySki = 'BackcountrySki',
   Canoeing = 'Canoeing', Crossfit = 'Crossfit',
   EBikeRide = 'EBikeRide', Elliptical = 'Elliptical',
@@ -18,6 +18,6 @@ export enum StravaActivityType {
   Yoga = 'Yoga'
 }
 
-type TStravaActivityType = typeof StravaActivityType
+type TStravaActivityType = typeof StravaActivityTypes
 
 export default TStravaActivityType

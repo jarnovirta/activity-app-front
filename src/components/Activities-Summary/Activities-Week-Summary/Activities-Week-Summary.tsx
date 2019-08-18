@@ -1,26 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import IStravaActivityDetail from '../../../common-types/strava-api-data/strava-activity-detail'
+import IStravaActivityDetail from '../../../common-types/strava-api/data/strava-activity-detail'
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip,
 } from 'recharts'
-import { StravaActivityType }  from '../../../common-types/strava-api-data/strava-activity-type'
+import { StravaActivityTypes }  from '../../../common-types/strava-api/data/strava-activity-type'
 import compareDates from '../../../util/compare-dates'
-import { IChartData, IProps } from './types'
+import { IChartData, IWeekSummaryProps } from './types'
 
-const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-const startDate = new Date(Date.now() - 6 * 24 * 60 * 60 * 1000)
+const days: Array<string> = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+const startDate: Date = new Date(Date.now() - 6 * 24 * 60 * 60 * 1000)
 
-const getChartData = (weekActivityData:Array<IStravaActivityDetail>):Array<IChartData> => {
-    const chartDate:Date = new Date(startDate)
-    let chartData:Array<IChartData> = []
+const getChartData = (weekActivityData:Array<IStravaActivityDetail>): Array<IChartData> => {
+    const chartDate: Date = new Date(startDate)
+    let chartData: Array<IChartData> = []
     for (let i = 0; i < 7; i++) {
-      let dist = weekActivityData
+      let dist: number = weekActivityData
         .filter(activity => {
           return compareDates(new Date(activity.start_date_local), chartDate) === 0
         })
         .map(activity => activity.distance)
-        .reduce((sum, distance) => sum + distance, 0)
+        .reduce((sum: number, distance: number) => sum + distance, 0)
       chartData[i] = {
         day: days[chartDate.getDay()],
         distance: dist = Math.round(10 * dist / 1000) / 10
@@ -32,7 +32,7 @@ const getChartData = (weekActivityData:Array<IStravaActivityDetail>):Array<IChar
 
 const filterActivities = (
   activities:Array<IStravaActivityDetail>,
-  activityType: StravaActivityType): Array<IStravaActivityDetail> => {
+  activityType: StravaActivityTypes): Array<IStravaActivityDetail> => {
     return activities
       .filter(activity => {
         return activity.type === activityType &&
@@ -40,7 +40,7 @@ const filterActivities = (
       })
 }
 
-const ActivitiesWeekSummary: React.FunctionComponent<IProps> = (props: IProps) => {
+const ActivitiesWeekSummary: React.FunctionComponent<IWeekSummaryProps> = (props: IWeekSummaryProps) => {
   return (
     <div>
       <BarChart

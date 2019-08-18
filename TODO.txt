@@ -1,1 +1,2 @@
-TypeScript + Redux: https://redux.js.org/recipes/usage-with-typescript
+Lisää path alias systeemi:
+https://dev.to/larswaechter/path-aliases-with-typescript-in-nodejs-4353

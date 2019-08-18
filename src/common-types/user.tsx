@@ -1,23 +1,25 @@
+import IStravaToken from './strava-api/strava-token'
 
-export interface IUser {
+export interface INewUser {
   firstName: string,
-  id?: string,
   lastName: string,
-  loginStatus?: TLoginStatus,
-  stravaToken?: IStravaToken,
   username: string,
-  password?: string,
-  passwordHash?: string
+  password: string
 }
 
-export interface ICredentials {
+export interface IUser extends INewUser {
+  firstName: string,
+  id: string,
+  lastName: string,
+  loginStatus?: TLoginStatus,
+  stravaToken: IStravaToken,
+  username: string,
+  password: string
+}
+
+export interface ILoginCredentials {
   username: string,
   password: string
 }
 
 export type TLoginStatus = 'LOGGED_IN' | 'NOT_LOGGED_IN' | 'NOT_CHECKED'
-
-export interface IStravaToken {
-  accessToken: string,
-  expiresAt: number
-}

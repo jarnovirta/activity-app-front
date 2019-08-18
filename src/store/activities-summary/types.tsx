@@ -1,13 +1,13 @@
-import { StravaActivityType } from '../../common-types/strava-api-data/strava-activity-type';
+import { StravaActivityTypes } from '../../common-types/strava-api/data/strava-activity-type';
+import { SET_ACTIVITY } from './constants'
 
-export const SET_ACTIVITY = 'SET_ACTIVITY'
-
-export interface ActivitiesSummaryState {
-  selectedActivity: StravaActivityType
+export interface IActivitiesSummaryState {
+  selectedActivity: StravaActivityTypes
 }
-interface SetActivityAction {
+
+interface ISetActivityAction {
   type: typeof SET_ACTIVITY,
-  data: StravaActivityType
+  data: StravaActivityTypes
 }
 
-export type ActivitiesActionTypes = SetActivityAction
+export type TActivitiesActionTypes = ISetActivityAction
