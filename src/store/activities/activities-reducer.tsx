@@ -2,7 +2,7 @@ import activityService from '../../services/activities'
 import { Dispatch } from 'redux'
 import { IActivitiesState, ActivitiesActionTypes, INITIALIZE_ACTIVITIES } from './types'
 import { LOGOUT_USER } from '../user/types'
-import IStravaActivityDetail from '../../common-types/strava-data/strava-activity-detail'
+import IStravaActivityDetail from '../../common-types/strava-api-data/strava-activity-detail'
 
 const initialState: IActivitiesState = { 
   initialized: false,

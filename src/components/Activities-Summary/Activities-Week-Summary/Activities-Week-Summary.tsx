@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import IStravaActivityDetail from '../../../common-types/strava-data/strava-activity-detail'
+import IStravaActivityDetail from '../../../common-types/strava-api-data/strava-activity-detail'
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip,
 } from 'recharts'
-import { StravaActivityType }  from '../../../common-types/strava-data/strava-activity-type'
+import { StravaActivityType }  from '../../../common-types/strava-api-data/strava-activity-type'
 import compareDates from '../../../util/compare-dates'
 import { IChartData, IProps } from './types'
 

@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { ButtonGroup, Button } from 'react-bootstrap'
 import FontAwesome from 'react-fontawesome'
-import { StravaActivityType } from '../../../common-types/strava-data/strava-activity-type'
+import { StravaActivityType } from '../../../common-types/strava-api-data/strava-activity-type'
 import { setActivity } from '../../../store/activities-summary/activitiesSummaryReducer'
 import { IActivityButtonsProps } from './types'
 
