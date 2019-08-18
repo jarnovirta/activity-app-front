@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios'
 import { IUser } from '../../common-types/user'
-import stravaAuthService from './../strava-auth'
+import stravaAuthService from './strava-auth'
 
 // Axios interceptor to intercept requests to Strava API.
 // Adds an OAuth access token to all requests. Requests

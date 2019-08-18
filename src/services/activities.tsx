@@ -1,18 +1,16 @@
 import baseAxios from 'axios'
 const axios = baseAxios.create()
-import { tokenInterceptor } from '../strava-auth/tokenInterceptor'
-import{ IUser, IStravaToken } from '../../common-types/user'
-import IStravaActivityDetail from '../../common-types/strava-data/strava-activity-detail'
+import { tokenInterceptor } from './strava-auth/tokenInterceptor'
+import{ IUser } from '../common-types/user'
+import IStravaActivityDetail from '../common-types/strava-data/strava-activity-detail'
 
 const baseUrl = 'https://www.strava.com/api/v3/athlete/activities'
 
-let token: IStravaToken
 let tokenInterceptorRef: number
 
 const setInterceptor = (user: IUser) => {
   if (tokenInterceptorRef)
   axios.interceptors.request.eject(tokenInterceptorRef)
-  token = user.stravaToken!
   tokenInterceptorRef = axios.interceptors.request.use(tokenInterceptor(user))
 }
 
