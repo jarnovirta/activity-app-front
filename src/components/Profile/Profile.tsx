@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Card, ListGroup, Image } from 'react-bootstrap'
 import Moment from 'react-moment'
-import { IProps } from './types'
+import { IProps as IProfileProps } from './types'
 import testImg from './../../profile_img.jpg'
 import IStravaActivityDetail from '../../common-types/strava-data/strava-activity-detail'
 
@@ -14,7 +14,7 @@ const filterLatestActivity = (activities:Array<IStravaActivityDetail>) => {
     [0]
 }
 
-const Profile: React.FunctionComponent<IProps> = (props: IProps) => {
+const Profile: React.FunctionComponent<IProfileProps> = (props: IProfileProps) => {
   const LatestActivity = () => {
     if (!props.latestActivity) return (<div></div>)
     return (

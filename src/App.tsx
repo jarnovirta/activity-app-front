@@ -9,13 +9,12 @@ import { AppState } from './store/store'
 import Navigation from './components/Navigation/Navigation'
 import Login from './components/Login/Login'
 import Signup from './components/Sign-Up/Sign-Up'
-import IUser from './common-types/user'
+import { IUser, TLoginStatus } from './common-types/user'
 import { IActivitiesState } from './store/activities/types'
 import RequestAuthorization from './components/Request-Authorization/Request-Authorization'
 import loginService from './services/login'
 import Welcome from './components/Welcome'
 import activitiesService from './services/activities'
-import TLoginStatus from './common-types/login-status'
 
 interface IProps extends RouteComponentProps<any> {
   setUser: Function,

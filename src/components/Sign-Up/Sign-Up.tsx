@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import { addUser } from '../../store/user/user-reducer'
 import { FormGroup, FormControl, FormLabel,
   Button } from 'react-bootstrap'
-import IUser from '../../common-types/user'
-import { IProps, IInputChangeEvent } from './types'
+import { IUser } from '../../common-types/user'
+import { IProps as ISignupProps, IInputChangeEvent } from './types'
 import { withRouter } from 'react-router'
 
-const Signup: React.SFC<IProps> = (props: IProps) => {
+const Signup: React.SFC<ISignupProps> = (props: ISignupProps) => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [username, setUsername] = useState('')

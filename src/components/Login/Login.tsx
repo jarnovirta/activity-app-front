@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { login } from '../../store/user/user-reducer'
 import { FormGroup, FormControl, FormLabel, Button } from 'react-bootstrap'
-import { IProps, IInputChangeEvent } from './types'
-import { ICredentials } from '../../common-types/credentials'
+import { IProps as ILoginProps, IInputChangeEvent } from './types'
+import { ICredentials } from '../../common-types/user'
 import { withRouter } from 'react-router'
 
-const Login: React.SFC<IProps> = (props: IProps) => {
+const Login: React.SFC<ILoginProps> = (props: ILoginProps) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 

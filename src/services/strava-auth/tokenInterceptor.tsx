@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios'
-import IUser from '../../common-types/user'
+import { IUser } from '../../common-types/user'
 import stravaAuthService from './../strava-auth'
 
 // Axios interceptor to intercept requests to Strava API.

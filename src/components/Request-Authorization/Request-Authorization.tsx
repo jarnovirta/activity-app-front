@@ -1,12 +1,10 @@
 import React from 'react'
 import { AppState } from '../../store/store'
-import IUser from '../../common-types/user'
+import { IUser } from '../../common-types/user'
 import { connect } from 'react-redux'
+import { IRequestAuthorizationProps } from './types'
 
-interface IProps {
-  user: IUser
-}
-const RequestAuthorization = (props: IProps) => {
+const RequestAuthorization = (props: IRequestAuthorizationProps) => {
   const getStravaAuthorization = () => async (event: any) => {
     event.preventDefault()
     console.log('WTF')

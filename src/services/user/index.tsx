@@ -1,4 +1,4 @@
-import IUser from '../../common-types/user'
+import { IUser } from '../../common-types/user'
 import axios from 'axios'
 const baseUrl = '/api/users'
 

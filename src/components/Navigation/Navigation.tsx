@@ -4,14 +4,9 @@ import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { logout } from '../../store/user/user-reducer'
 import { AppState } from '../../store/store'
-import IUser from '../../common-types/user'
+import { INavigationProps } from './types'
 
-interface IProps {
-  logout: Function,
-  user: IUser
-}
-
-const Navigation = (props: IProps) => {
+const Navigation = (props: INavigationProps) => {
   const loggedIn = !props.user ? false : props.user.username ? true : false
   const notLoggedInNavItems = () => {
     return (

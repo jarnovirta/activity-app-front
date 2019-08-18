@@ -1,7 +1,5 @@
-import IStravaToken from './strava-token'
-import TLoginStatus from './login-status'
 
-export default interface IUser {
+export interface IUser {
   firstName: string,
   id?: string,
   lastName: string,
@@ -10,4 +8,16 @@ export default interface IUser {
   username: string,
   password?: string,
   passwordHash?: string
+}
+
+export interface ICredentials {
+  username: string,
+  password: string
+}
+
+export type TLoginStatus = 'LOGGED_IN' | 'NOT_LOGGED_IN' | 'NOT_CHECKED'
+
+export interface IStravaToken {
+  accessToken: string,
+  expiresAt: number
 }

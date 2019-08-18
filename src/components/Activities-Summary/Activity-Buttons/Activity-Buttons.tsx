@@ -5,12 +5,9 @@ import { ButtonGroup, Button } from 'react-bootstrap'
 import FontAwesome from 'react-fontawesome'
 import { StravaActivityType } from '../../../common-types/strava-data/strava-activity-type'
 import { setActivity } from '../../../store/activities-summary/activitiesSummaryReducer'
+import { IActivityButtonsProps } from './types'
 
-interface IProps {
-  setActivity: Function,
-  selectedActivity: StravaActivityType
-}
-const ActivityButtons: React.FunctionComponent<IProps> = (props: IProps) => {
+const ActivityButtons: React.FunctionComponent<IActivityButtonsProps> = (props: IActivityButtonsProps) => {
   const activityButtonStyle = { color: 'white', textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }
   const handleSetActivityClick = (activity:StravaActivityType) => () => {
     props.setActivity(activity)

@@ -1,10 +1,9 @@
 import { Dispatch } from 'redux'
+import { AxiosResponse } from 'axios'
 import { SET_USER, LOGOUT_USER, LOGIN_FAILED, UserActionTypes } from './types'
-import IUser from '../../common-types/user'
+import { IUser, ICredentials } from '../../common-types/user'
 import userService from '../../services/user'
 import loginService from '../../services/login'
-import { ICredentials } from '../../common-types/credentials'
-import { AxiosResponse } from 'axios'
 import activityService from './../../services/activities'
 
 export const reducer = (state: IUser = { loginStatus: 'NOT_CHECKED' } as IUser,

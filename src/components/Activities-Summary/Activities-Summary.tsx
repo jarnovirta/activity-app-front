@@ -3,14 +3,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Card, ListGroup } from 'react-bootstrap'
 import ActivitiesWeekSummary from './Activities-Week-Summary/Activities-Week-Summary'
-import ActivityButtons from './Activity-Buttons'
-import IStravaActivityDetail from '../../common-types/strava-data/strava-activity-detail'
+import ActivityButtons from './Activity-Buttons/Activity-Buttons'
+import { IActivitiesSummaryProps } from './types'
 
-interface IProps {
-  activities: Array<IStravaActivityDetail>
-}
-
-const ActivitiesSummary: React.FunctionComponent<IProps> = (props: IProps) => {
+const ActivitiesSummary: React.FunctionComponent<IActivitiesSummaryProps> = (props: IActivitiesSummaryProps) => {
   return (
     <div>
       <Card>

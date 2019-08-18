@@ -1,6 +1,5 @@
-import IUser from '../../common-types/user'
+import { IUser, ICredentials } from '../../common-types/user'
 import axios, { AxiosResponse } from 'axios'
-import { ICredentials } from '../../common-types/credentials'
 
 const baseUrl = '/api/login'
 
