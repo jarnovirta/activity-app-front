@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { IStravaActivityDetail } from '../../../common-types/strava-data/strava-activity-detail'
+import IStravaActivityDetail from '../../../common-types/strava-data/strava-activity-detail'
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip,
 } from 'recharts'

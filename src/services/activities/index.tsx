@@ -3,7 +3,7 @@ const axios = baseAxios.create()
 import { tokenInterceptor } from '../strava-auth/tokenInterceptor'
 import IStravaToken from '../../common-types/strava-token'
 import IUser from '../../common-types/user'
-import { IStravaActivityDetail } from '../../common-types/strava-data/strava-activity-detail'
+import IStravaActivityDetail from '../../common-types/strava-data/strava-activity-detail'
 
 const baseUrl = 'https://www.strava.com/api/v3/athlete/activities'
 

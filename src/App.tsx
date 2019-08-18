@@ -1,7 +1,7 @@
 import './App.css'
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Route, withRouter, RouteComponentProps, Redirect } from 'react-router-dom'
+import { Route, withRouter, RouteComponentProps } from 'react-router-dom'
 import Home from './components/Home/Home'
 import { initializeActivities } from './store/activities/activities-reducer'
 import { setUser, loginFailed } from './store/user/user-reducer'
@@ -15,7 +15,7 @@ import RequestAuthorization from './components/Request-Authorization/Request-Aut
 import loginService from './services/login'
 import Welcome from './components/Welcome'
 import activitiesService from './services/activities'
-import { TLoginStatus } from './common-types/login-status'
+import TLoginStatus from './common-types/login-status'
 
 interface IProps extends RouteComponentProps<any> {
   setUser: Function,

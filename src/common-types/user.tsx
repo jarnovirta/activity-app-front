@@ -1,5 +1,5 @@
 import IStravaToken from './strava-token'
-import { TLoginStatus } from './login-status'
+import TLoginStatus from './login-status'
 
 export default interface IUser {
   firstName: string,

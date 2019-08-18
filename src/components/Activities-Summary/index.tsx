@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Card, ListGroup } from 'react-bootstrap'
 import ActivitiesWeekSummary from './Activities-Week-Summary/Activities-Week-Summary'
 import ActivityButtons from './Activity-Buttons'
-import { IStravaActivityDetail } from '../../common-types/strava-data/strava-activity-detail'
+import IStravaActivityDetail from '../../common-types/strava-data/strava-activity-detail'
 
 interface IProps {
   activities: Array<IStravaActivityDetail>

@@ -1,7 +1,6 @@
 import { StravaActivityType } from './strava-activity-type'
 
-// Type of StravaDetailedActivity
-export interface IStravaActivityDetail {
+export default interface IStravaActivityDetail {
   id: number,             // activitys Strava-id
   name: string,           // activity's name
   distance: number,       // meters

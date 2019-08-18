@@ -1,4 +1,4 @@
-import { IStravaActivityDetail } from '../../common-types/strava-data/strava-activity-detail'
+import IStravaActivityDetail from '../../common-types/strava-data/strava-activity-detail'
 
 export interface IActivitiesState {
   initialized: boolean,
