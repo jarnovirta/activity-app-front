@@ -1,10 +1,9 @@
 import baseAxios from 'axios'
 const axios = baseAxios.create()
-import { StravaDetailedActivity } from "../../models/strava/strava-detailed-activity-iots"
-import TStravaDetailedActivity from "../../models/strava/strava-detailed-activity-iots"
 import { tokenInterceptor } from '../strava-auth/tokenInterceptor'
-import IStravaToken from '../../models/IStravaToken';
-import IUser from '../../models/User';
+import IStravaToken from '../../common-types/strava-token'
+import IUser from '../../common-types/user'
+import { IStravaActivityDetail } from '../../common-types/strava-data/strava-activity-detail'
 
 const baseUrl = 'https://www.strava.com/api/v3/athlete/activities'
 
@@ -19,18 +18,13 @@ const setInterceptor = (user: IUser) => {
   tokenInterceptorRef = axios.interceptors.request.use(tokenInterceptor(user))
 }
 
-const getAll = async ():Promise<Array<StravaDetailedActivity>> => {
+const getAll = async ():Promise<Array<IStravaActivityDetail>> => {
   const response = await axios.get(baseUrl)
-  const activities: Array<any> = response.data
-  decodeActivities(activities)
-  return activities
+  return response.data  
 }
 const ejectInterceptor = () => {
-  console.log("Ejecting interceptor")
+  console.log('Ejecting interceptor')
   axios.interceptors.request.eject(tokenInterceptorRef)
 }
-const decodeActivities = (activities:Array<any>) => {
-  activities
-    .forEach(activity => TStravaDetailedActivity.decode(activity))
-}
+
 export default { getAll, setInterceptor, ejectInterceptor }

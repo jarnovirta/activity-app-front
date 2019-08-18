@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { ButtonGroup, Button } from 'react-bootstrap'
 import FontAwesome from 'react-fontawesome'
-import { StravaActivityType } from '../../../models/strava/strava-activity-type'
+import { StravaActivityType } from '../../../common-types/strava-data/strava-activity-type'
 import { setActivity } from '../../../store/activities-summary/activitiesSummaryReducer'
 
 interface IProps {
@@ -19,17 +19,17 @@ const ActivityButtons: React.FunctionComponent<IProps> = (props: IProps) => {
     <div>
       <ButtonGroup>
         <Button
-          variant="secondary"
+          variant='secondary'
           onClick={handleSetActivityClick(StravaActivityType.Ride)}
           active={props.selectedActivity === StravaActivityType.Ride}>
-          <FontAwesome className="activityIcon"
+          <FontAwesome className='activityIcon'
             name='bicycle'
             size='2x'
             style={activityButtonStyle}
           />
         </Button>
         <Button
-          variant="secondary"
+          variant='secondary'
           onClick={handleSetActivityClick(StravaActivityType.Run)}
           active={props.selectedActivity === StravaActivityType.Run}>
           <FontAwesome
@@ -38,7 +38,7 @@ const ActivityButtons: React.FunctionComponent<IProps> = (props: IProps) => {
             style={activityButtonStyle}
           />
         </Button>
-        <Button variant="secondary"
+        <Button variant='secondary'
           onClick={handleSetActivityClick(StravaActivityType.Swim)}
           active={props.selectedActivity === StravaActivityType.Swim}>
           <FontAwesome

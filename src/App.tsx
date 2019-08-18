@@ -9,13 +9,13 @@ import { AppState } from './store/store'
 import Navigation from './components/Navigation/Navigation'
 import Login from './components/Login/Login'
 import Signup from './components/Sign-Up/Sign-Up'
-import IUser from './models/User'
-import { IActivitiesState } from './store/activities/types';
-import RequestAuthorization from './components/Request-Authorization/Request-Authorization';
+import IUser from './common-types/user'
+import { IActivitiesState } from './store/activities/types'
+import RequestAuthorization from './components/Request-Authorization/Request-Authorization'
 import loginService from './services/login'
-import Welcome from './components/Welcome';
+import Welcome from './components/Welcome'
 import activitiesService from './services/activities'
-import { LoginStatus } from './models/LoginStatus';
+import { TLoginStatus } from './common-types/login-status'
 
 interface IProps extends RouteComponentProps<any> {
   setUser: Function,
@@ -26,7 +26,7 @@ interface IProps extends RouteComponentProps<any> {
 }
 
 const initialize = async (props: IProps) => {
-  if (props.user.loginStatus === "NOT_CHECKED") {
+  if (props.user.loginStatus === 'NOT_CHECKED') {
     try {
       const response = await loginService.currentUser()
       const user = response.data
@@ -34,13 +34,13 @@ const initialize = async (props: IProps) => {
     }
     catch (e) {
       if (e.response && e.response.status === 401) {
-        console.log("Login failed")
+        console.log('Login failed')
         props.loginFailed()
       }
       else console.log(e)
     }    
   }
-  if (props.user.loginStatus === "LOGGED_IN" && !props.activities.initialized) {
+  if (props.user.loginStatus === 'LOGGED_IN' && !props.activities.initialized) {
     if (props.user.stravaToken && props.user.stravaToken.accessToken) {        
       activitiesService.setInterceptor(props.user)
       props.initializeActivities()
@@ -48,9 +48,9 @@ const initialize = async (props: IProps) => {
   }
 }
 const enforceRoutes = (props: IProps) => {
-  const userLoginStatus: LoginStatus = props.user.loginStatus as LoginStatus
-  const isLoginPending = userLoginStatus === "NOT_CHECKED"
-  const isLoggedIn = isLoginPending || userLoginStatus === "LOGGED_IN"
+  const userLoginStatus: TLoginStatus = props.user.loginStatus as TLoginStatus
+  const isLoginPending = userLoginStatus === 'NOT_CHECKED'
+  const isLoggedIn = isLoginPending || userLoginStatus === 'LOGGED_IN'
   const isNotAuthorizedToStrava = isLoggedIn && props.user.stravaToken && !props.user.stravaToken.accessToken
   const path = props.history.location.pathname
   const notLoggedInPaths:Array<string> = ['/','/login', '/signup', '/requestAuthorization']
@@ -77,8 +77,6 @@ const App: React.SFC<IProps> = (props: IProps) => {
   const LoginCheckedView = () => {
     return (
       <div>
-        {/*USER NOT LOGGED IN */}
-        
         <Route exact path='/' component={Welcome} />
         <Route path='/home' component={Home} />
         <Route exact path='/login' component={Login} />
@@ -89,9 +87,9 @@ const App: React.SFC<IProps> = (props: IProps) => {
   }
 
   return (
-    <div className="container">
+    <div className='container'>
       <Navigation />
-      { props.user.loginStatus === "NOT_CHECKED" ? LoginPendingView() : LoginCheckedView() }
+      { props.user.loginStatus === 'NOT_CHECKED' ? LoginPendingView() : LoginCheckedView() }
     </div>
   )
 }

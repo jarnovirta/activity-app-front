@@ -1,8 +1,8 @@
-import IUser from "../../models/User";
-import { StravaDetailedActivity } from "../../models/strava/strava-detailed-activity-iots"
+import IUser from '../../common-types/user'
+import { IStravaActivityDetail } from '../../common-types/strava-data/strava-activity-detail'
 
 export interface IProps {
   user: IUser,
   activitiesCount: number,
-  latestActivity: StravaDetailedActivity
+  latestActivity: IStravaActivityDetail
 }

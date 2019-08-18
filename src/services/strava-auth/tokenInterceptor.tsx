@@ -1,6 +1,12 @@
 import { AxiosRequestConfig } from 'axios'
-import IUser from '../../models/User'
+import IUser from '../../common-types/user'
 import stravaAuthService from './../strava-auth'
+
+// Axios interceptor to intercept requests to Strava API.
+// Adds an OAuth access token to all requests. Requests
+// a fresh token if expired. User data (token and id) are
+// stored locally and cleared by user-reducer action creator 
+// on logout.
 
 let user:IUser
 

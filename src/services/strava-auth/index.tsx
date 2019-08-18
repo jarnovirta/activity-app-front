@@ -1,5 +1,5 @@
 import axios from 'axios'
-import IStravaToken from '../../models/IStravaToken';
+import IStravaToken from '../../common-types/strava-token'
 
 const baseUrl = '/api/stravaauth'
 

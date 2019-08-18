@@ -5,9 +5,9 @@ import { Card, ListGroup, Image } from 'react-bootstrap'
 import Moment from 'react-moment'
 import { IProps } from './types'
 import testImg from './../../profile_img.jpg'
-import { StravaDetailedActivity } from '../../models/strava/strava-detailed-activity-iots'
+import { IStravaActivityDetail } from '../../common-types/strava-data/strava-activity-detail'
 
-const filterLatestActivity = (activities:Array<StravaDetailedActivity>) => {
+const filterLatestActivity = (activities:Array<IStravaActivityDetail>) => {
   return activities
     .sort((a, b) => new Date(b.start_date_local).getTime()
       - new Date(a.start_date_local).getTime())
@@ -21,12 +21,12 @@ const Profile: React.FunctionComponent<IProps> = (props: IProps) => {
       <div>
         Latest activity:<br />
         <b>{ props.latestActivity.type }</b>
-        &nbsp;- <Moment format="MMM DD, YYYY">{props.latestActivity.start_date_local}</Moment>
+        &nbsp;- <Moment format='MMM DD, YYYY'>{props.latestActivity.start_date_local}</Moment>
       </div>
     )
   }
   return (
-    <div className="profile">
+    <div className='profile'>
     <div style={{ display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'}}>
@@ -36,12 +36,12 @@ const Profile: React.FunctionComponent<IProps> = (props: IProps) => {
     </div>
       <Card>
         <Card.Header>
-          <div className="profileBody text-center">
+          <div className='profileBody text-center'>
             <h3>{ props.user.username }</h3>
             <p>Activities - { props.activitiesCount }</p>
           </div>
         </Card.Header>
-        <ListGroup variant="flush">
+        <ListGroup variant='flush'>
           <ListGroup.Item>
             <LatestActivity />
           </ListGroup.Item>

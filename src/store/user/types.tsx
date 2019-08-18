@@ -1,4 +1,4 @@
-import IUser from "../../models/User";
+import IUser from '../../common-types/user'
 
 export const SET_USER = 'SET_USER'
 export const LOGOUT_USER = 'LOGOUT_USER'

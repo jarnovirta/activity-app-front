@@ -2,12 +2,12 @@ import './index.css'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Card, ListGroup } from 'react-bootstrap'
-import { StravaDetailedActivity } from '../../models/strava/strava-detailed-activity-iots'
 import ActivitiesWeekSummary from './Activities-Week-Summary/Activities-Week-Summary'
 import ActivityButtons from './Activity-Buttons'
+import { IStravaActivityDetail } from '../../common-types/strava-data/strava-activity-detail'
 
 interface IProps {
-  activities: Array<StravaDetailedActivity>
+  activities: Array<IStravaActivityDetail>
 }
 
 const ActivitiesSummary: React.FunctionComponent<IProps> = (props: IProps) => {
@@ -17,7 +17,7 @@ const ActivitiesSummary: React.FunctionComponent<IProps> = (props: IProps) => {
         <Card.Header>
           Activities Summary
         </Card.Header>
-        <ListGroup variant="flush">
+        <ListGroup variant='flush'>
           <ListGroup.Item>
             <ActivityButtons />
           </ListGroup.Item>

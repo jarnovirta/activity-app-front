@@ -3,23 +3,23 @@ import { connect } from 'react-redux'
 import { addUser } from '../../store/user/user-reducer'
 import { FormGroup, FormControl, FormLabel,
   Button } from 'react-bootstrap'
-import IUser from '../../models/User'
+import IUser from '../../common-types/user'
 import { IProps, IInputChangeEvent } from './types'
 import { withRouter } from 'react-router'
 
 const Signup: React.SFC<IProps> = (props: IProps) => {
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleSubmit = async () => {    
     const user: IUser = {
       firstName, lastName, username, password
     };
-    (document.getElementById("addUserForm") as HTMLFormElement).reset()
+    (document.getElementById('addUserForm') as HTMLFormElement).reset()
     await props.addUser(user)    
-    props.history.push("/")
+    props.history.push('/')
   }
 
   const handleFirstNameChange = (event: IInputChangeEvent) => {
@@ -36,24 +36,24 @@ const Signup: React.SFC<IProps> = (props: IProps) => {
   }
   return (
     <div>
-      <form id="addUserForm">
+      <form id='addUserForm'>
       <h4>Sign Up</h4>
       <FormGroup>
         <FormLabel>First name</FormLabel>
-        <FormControl onChange={handleFirstNameChange} type="text"
-          name="firstName" placeholder="Enter first name" />
+        <FormControl onChange={handleFirstNameChange} type='text'
+          name='firstName' placeholder='Enter first name' />
 
         <FormLabel>Last name</FormLabel>
-        <FormControl onChange={handleLastNameChange} type="text"
-          name="lastName" placeholder="Enter last name" />
+        <FormControl onChange={handleLastNameChange} type='text'
+          name='lastName' placeholder='Enter last name' />
 
         <FormLabel>Username</FormLabel>
-        <FormControl onChange={handleUsernameChange} type="text"
-          name="username" placeholder="Enter username" />
+        <FormControl onChange={handleUsernameChange} type='text'
+          name='username' placeholder='Enter username' />
 
         <FormLabel>Password</FormLabel>
-        <FormControl onChange={handlePasswordChange} type="password"
-          name="password" placeholder="Enter password" />
+        <FormControl onChange={handlePasswordChange} type='password'
+          name='password' placeholder='Enter password' />
         <Button onClick={handleSubmit}>Submit</Button>
       </FormGroup>
       </form>

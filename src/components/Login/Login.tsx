@@ -3,20 +3,20 @@ import { connect } from 'react-redux'
 import { login } from '../../store/user/user-reducer'
 import { FormGroup, FormControl, FormLabel, Button } from 'react-bootstrap'
 import { IProps, IInputChangeEvent } from './types'
-import { ICredentials } from '../../models/Credentials'
+import { ICredentials } from '../../common-types/credentials'
 import { withRouter } from 'react-router'
 
 const Login: React.SFC<IProps> = (props: IProps) => {
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleSubmit = async () => {
     const creds: ICredentials = {
       username, password
     };
-    (document.getElementById("loginForm") as HTMLFormElement).reset()
+    (document.getElementById('loginForm') as HTMLFormElement).reset()
     await props.login(creds)
-    props.history.push("/")
+    props.history.push('/')
   }
   const handleUsernameChange = (event: IInputChangeEvent) => {
     setUsername((event.target as HTMLInputElement).value)
@@ -27,14 +27,14 @@ const Login: React.SFC<IProps> = (props: IProps) => {
   return (
     <div>
       <h4>Login</h4>
-      <form id="loginForm">
+      <form id='loginForm'>
         <FormGroup>
           <FormLabel>Username</FormLabel>
-          <FormControl id="username" onChange={handleUsernameChange} type="text"
-            name="username" placeholder="Enter username" />
+          <FormControl id='username' onChange={handleUsernameChange} type='text'
+            name='username' placeholder='Enter username' />
           <FormLabel>Password</FormLabel>
-          <FormControl onChange={handlePasswordChange} type="password"
-            id="password" name="password" placeholder="Enter password" />
+          <FormControl onChange={handlePasswordChange} type='password'
+            id='password' name='password' placeholder='Enter password' />
           <Button onClick={handleSubmit}>Login</Button>
         </FormGroup>
       </form>

@@ -1,7 +1,7 @@
-import { StravaDetailedActivity } from "../../../models/strava/strava-detailed-activity-iots";
+import { IStravaActivityDetail } from '../../../common-types/strava-data/strava-activity-detail'
 
 export interface IProps {
-  activities: Array<StravaDetailedActivity>
+  activities: Array<IStravaActivityDetail>
 }
 export interface IChartData {
   day: string,

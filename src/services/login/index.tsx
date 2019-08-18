@@ -1,13 +1,15 @@
-import IUser from "../../models/User"
-import axios, { AxiosResponse, AxiosError } from "axios"
-import { ICredentials } from "../../models/Credentials"
+import IUser from '../../common-types/user'
+import axios, { AxiosResponse } from 'axios'
+import { ICredentials } from '../../common-types/credentials'
 
-const baseUrl = "/api/login"
+const baseUrl = '/api/login'
+
+// TODO: add axios interceptor on login
 
 const login = async (creds: ICredentials): Promise<AxiosResponse<IUser>> => {
   try {
     const response = await axios.post<IUser>(`${baseUrl}`, creds)
-    console.log("Service logged in user",)
+    console.log('Service logged in user',)
     return response
   }
   catch (e) {    

@@ -1,17 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { StravaDetailedActivity } from '../../../models/strava/strava-detailed-activity-iots'
+import { IStravaActivityDetail } from '../../../common-types/strava-data/strava-activity-detail'
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip,
 } from 'recharts'
-import { StravaActivityType }  from '../../../models/strava/strava-activity-type'
+import { StravaActivityType }  from '../../../common-types/strava-data/strava-activity-type'
 import compareDates from '../../../util/compare-dates'
 import { IChartData, IProps } from './types'
 
-const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 const startDate = new Date(Date.now() - 6 * 24 * 60 * 60 * 1000)
 
-const getChartData = (weekActivityData:Array<StravaDetailedActivity>):Array<IChartData> => {
+const getChartData = (weekActivityData:Array<IStravaActivityDetail>):Array<IChartData> => {
     const chartDate:Date = new Date(startDate)
     let chartData:Array<IChartData> = []
     for (let i = 0; i < 7; i++) {
@@ -31,8 +31,8 @@ const getChartData = (weekActivityData:Array<StravaDetailedActivity>):Array<ICha
   }
 
 const filterActivities = (
-  activities:Array<StravaDetailedActivity>,
-  activityType: StravaActivityType): Array<StravaDetailedActivity> => {
+  activities:Array<IStravaActivityDetail>,
+  activityType: StravaActivityType): Array<IStravaActivityDetail> => {
     return activities
       .filter(activity => {
         return activity.type === activityType &&
@@ -50,12 +50,12 @@ const ActivitiesWeekSummary: React.FunctionComponent<IProps> = (props: IProps) =
         margin={{
           top: 5, right: 30, left: 0, bottom: 5,
         }}>
-        <XAxis dataKey="day" />
+        <XAxis dataKey='day' />
         <YAxis />
         <Tooltip />
-        <Bar dataKey="distance" fill="#8884d8" />
+        <Bar dataKey='distance' fill='#8884d8' />
       </BarChart>
-      <p className="text-muted">Strava</p>
+      <p className='text-muted'>Strava</p>
     </div>
   )
 }

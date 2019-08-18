@@ -1,4 +1,4 @@
-export default interface StravaActivityTotal {
+export default interface IStravaActivityTotal {
   count: number,          // The number of activities considered in this total
   distance: number,       // The total distance covered by the considered activities
   moving_time: number,    // The total moving time of the considered activities
