@@ -5,8 +5,8 @@ import stravaAuthService from './strava-auth'
 // Axios interceptor to intercept requests to Strava API.
 // Adds an OAuth access token to all requests. Requests
 // a fresh token fron backend if expired. User data (token and id) 
-// are stored locally and cleared by store's logout dispatcher 
-// on logout.
+// are stored locally. Interceptor is set on login and removed on
+// logout by store's user thunks
 
 let user:IUser
 

@@ -13,7 +13,6 @@ import { TLoginStatus } from '../../common-types/user'
 import RequestAuthorization from '../Request-Authorization/Request-Authorization'
 import loginService from '../../services/login'
 import Welcome from '../Welcome/Welcome'
-import activitiesService from '../../services/activities'
 import { IAppProps } from './types'
 
 const initialize = async (props: IAppProps) => {
@@ -31,7 +30,6 @@ const initialize = async (props: IAppProps) => {
       else console.log(e)
     }
   }
-
   const isValidStravaToken = props.user.stravaToken
     && props.user.stravaToken.accessToken
 
@@ -46,9 +44,9 @@ const enforceRoutes = (props: IAppProps) => {
   const path = props.history.location.pathname
   const notLoggedInPaths: Array<string> = ['/', '/login', '/signup', '/requestAuthorization']
 
-  if (isLoggedIn && isNotAuthorizedToStrava && path !== '/requestAuthorization') props.history.push('/requestAuthorization')
-  else if (isLoggedIn && notLoggedInPaths.includes(path)) props.history.push('/home')
-  else if (!isLoggedIn && !(notLoggedInPaths.includes(path))) props.history.push('/login')
+  if (isLoggedIn && isNotAuthorizedToStrava && path !== '/requestAuthorization') props.history.replace('/requestAuthorization')
+  else if (isLoggedIn && notLoggedInPaths.includes(path)) props.history.replace('/home')
+  else if (!isLoggedIn && !(notLoggedInPaths.includes(path))) props.history.replace('/login')
 
 }
 const App: React.SFC<IAppProps> = (props: IAppProps) => {
