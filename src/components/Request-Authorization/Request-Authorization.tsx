@@ -5,9 +5,11 @@ import { IRequestAuthorizationProps } from './types'
 
 const RequestAuthorization = (props: IRequestAuthorizationProps) => {
   const getStravaAuthorization = (event: any) => {
-    event.preventDefault()    
-    const redirectUrl = `${window.location.href}api/stravaauth/authCode/${props.user.id}`
-    console.log("URL", redirectUrl)
+    event.preventDefault()
+    
+    const pathParts: Array<string> = window.location.href.split('/')
+    let redirectUrl: string = `${pathParts[0]}//${pathParts[2]}`
+    redirectUrl += `/api/stravaauth/authCode/${props.user.id}`
     const stravaAuthUrl = 'http://www.strava.com/oauth/authorize?'
       + 'client_id=33120&response_type=code&redirect_uri='
       + redirectUrl + '&'
@@ -17,6 +19,7 @@ const RequestAuthorization = (props: IRequestAuthorizationProps) => {
 
   return (
     <div>
+      {console.log("USER", props.user)}
       <h4>Please authorize access to your Strava data</h4>
       <button onClick={getStravaAuthorization}>Authorize</button>
     </div>
