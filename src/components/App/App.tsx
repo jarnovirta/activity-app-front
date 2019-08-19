@@ -17,7 +17,8 @@ import activitiesService from '../../services/activities'
 import { IAppProps } from './types'
 
 const initialize = async (props: IAppProps) => {
-  if (props.user.loginStatus === 'NOT_CHECKED') {
+  const loginStatus = props.user.loginStatus
+  if (loginStatus === 'NOT_CHECKED') {
     try {
       const user = await loginService.currentUser()
       props.setUser(user)
@@ -28,14 +29,14 @@ const initialize = async (props: IAppProps) => {
         props.loginFailed()
       }
       else console.log(e)
-    }    
-  }
-  if (props.user.loginStatus === 'LOGGED_IN' && !props.activities.initialized) {
-    if (props.user.stravaToken && props.user.stravaToken.accessToken) {        
-      activitiesService.setInterceptor(props.user)
-      props.initializeActivities()
     }
   }
+
+  const isValidStravaToken = props.user.stravaToken
+    && props.user.stravaToken.accessToken
+
+  if (loginStatus === 'LOGGED_IN' && !props.activities.initialized
+    && isValidStravaToken) props.initializeActivities()  
 }
 const enforceRoutes = (props: IAppProps) => {
   const userLoginStatus: TLoginStatus = props.user.loginStatus as TLoginStatus
@@ -43,12 +44,12 @@ const enforceRoutes = (props: IAppProps) => {
   const isLoggedIn = isLoginPending || userLoginStatus === 'LOGGED_IN'
   const isNotAuthorizedToStrava = isLoggedIn && props.user.stravaToken && !props.user.stravaToken.accessToken
   const path = props.history.location.pathname
-  const notLoggedInPaths:Array<string> = ['/','/login', '/signup', '/requestAuthorization']
-  
+  const notLoggedInPaths: Array<string> = ['/', '/login', '/signup', '/requestAuthorization']
+
   if (isLoggedIn && isNotAuthorizedToStrava && path !== '/requestAuthorization') props.history.push('/requestAuthorization')
   else if (isLoggedIn && notLoggedInPaths.includes(path)) props.history.push('/home')
   else if (!isLoggedIn && !(notLoggedInPaths.includes(path))) props.history.push('/login')
-  
+
 }
 const App: React.SFC<IAppProps> = (props: IAppProps) => {
   useEffect(() => {
@@ -79,7 +80,7 @@ const App: React.SFC<IAppProps> = (props: IAppProps) => {
   return (
     <div className='container'>
       <Navigation />
-      { props.user.loginStatus === 'NOT_CHECKED' ? LoginPendingView() : LoginCheckedView() }
+      {props.user.loginStatus === 'NOT_CHECKED' ? LoginPendingView() : LoginCheckedView()}
     </div>
   )
 }

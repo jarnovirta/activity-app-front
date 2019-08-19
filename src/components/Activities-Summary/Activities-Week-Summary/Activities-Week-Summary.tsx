@@ -5,7 +5,7 @@ import {
   BarChart, Bar, XAxis, YAxis, Tooltip,
 } from 'recharts'
 import { StravaActivityTypes }  from '../../../common-types/strava-api/data/strava-activity-type'
-import compareDates from '../../../util/compare-dates'
+import daysBetweenDates from '../../../util/dateUtils'
 import { IChartData, IWeekSummaryProps } from './types'
 
 const days: Array<string> = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
@@ -17,7 +17,7 @@ const getChartData = (weekActivityData:Array<IStravaActivityDetail>): Array<ICha
     for (let i = 0; i < 7; i++) {
       let dist: number = weekActivityData
         .filter(activity => {
-          return compareDates(new Date(activity.start_date_local), chartDate) === 0
+          return daysBetweenDates(new Date(activity.start_date_local), chartDate) === 0
         })
         .map(activity => activity.distance)
         .reduce((sum: number, distance: number) => sum + distance, 0)
@@ -36,7 +36,7 @@ const filterActivities = (
     return activities
       .filter(activity => {
         return activity.type === activityType &&
-          compareDates(new Date(activity.start_date_local), startDate) >= 0
+          daysBetweenDates(new Date(activity.start_date_local), startDate) >= 0
       })
 }
 
