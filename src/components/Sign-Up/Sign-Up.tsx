@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { addNewUser } from '../../store/user/thunks'
+import { addNewUser, login } from '../../store/user/thunks'
 import { FormGroup, FormControl, FormLabel,
   Button } from 'react-bootstrap'
-import { INewUser } from '../../common-types/user'
+import { INewUser, ILoginCredentials } from '../../common-types/user'
 import { IProps as ISignupProps, IInputChangeEvent } from './types'
 import { withRouter } from 'react-router'
 
@@ -18,7 +18,8 @@ const Signup: React.SFC<ISignupProps> = (props: ISignupProps) => {
       firstName, lastName, username, password
     };
     (document.getElementById('addUserForm') as HTMLFormElement).reset()
-    await props.addUser(user)    
+    await props.addUser(user)
+    await props.login({ username: user.username, password: user.password } as ILoginCredentials)
     props.history.push('/')
   }
 
@@ -62,6 +63,7 @@ const Signup: React.SFC<ISignupProps> = (props: ISignupProps) => {
 }
 
 const mapDispatchersToProps = {
-  addUser: addNewUser
+  addUser: addNewUser,
+  login: login
 }
 export default withRouter(connect(null, mapDispatchersToProps)(Signup))

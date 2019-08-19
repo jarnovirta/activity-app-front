@@ -4,9 +4,10 @@ import { connect } from 'react-redux'
 import { IRequestAuthorizationProps } from './types'
 
 const RequestAuthorization = (props: IRequestAuthorizationProps) => {
-  const getStravaAuthorization = () => async (event: any) => {
-    event.preventDefault()
+  const getStravaAuthorization = (event: any) => {
+    event.preventDefault()    
     const redirectUrl = `${window.location.href}api/stravaauth/authCode/${props.user.id}`
+    console.log("URL", redirectUrl)
     const stravaAuthUrl = 'http://www.strava.com/oauth/authorize?'
       + 'client_id=33120&response_type=code&redirect_uri='
       + redirectUrl + '&'

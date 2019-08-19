@@ -40,12 +40,14 @@ const enforceRoutes = (props: IAppProps) => {
   const userLoginStatus: TLoginStatus = props.user.loginStatus as TLoginStatus
   const isLoginPending = userLoginStatus === 'NOT_CHECKED'
   const isLoggedIn = isLoginPending || userLoginStatus === 'LOGGED_IN'
-  const isNotAuthorizedToStrava = isLoggedIn && props.user.stravaToken && !props.user.stravaToken.accessToken
+  const isAuthorizedToStrava = isLoggedIn && props.user.stravaToken && props.user.stravaToken.accessToken
+  
   const path = props.history.location.pathname
-  const notLoggedInPaths: Array<string> = ['/', '/login', '/signup', '/requestAuthorization']
+  const notLoggedInPaths: Array<string> = ['/', '/login', '/signup']
 
-  if (isLoggedIn && isNotAuthorizedToStrava && path !== '/requestAuthorization') props.history.replace('/requestAuthorization')
-  else if (isLoggedIn && notLoggedInPaths.includes(path)) props.history.replace('/home')
+  
+  if (isLoggedIn && !isAuthorizedToStrava && path !== '/requestAuthorization') props.history.replace('/requestAuthorization')
+  else if (isAuthorizedToStrava && notLoggedInPaths.includes(path)) props.history.replace('/home')
   else if (!isLoggedIn && !(notLoggedInPaths.includes(path))) props.history.replace('/login')
 
 }
