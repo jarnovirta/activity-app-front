@@ -24,7 +24,7 @@ const initialize = async (props: IAppProps) => {
     }
     catch (e) {
       if (e.response && e.response.status === 401) {
-        console.log('Login failed')
+        console.log('Login to server failed')
         props.loginFailed()
       }
       else console.log(e)
@@ -34,21 +34,24 @@ const initialize = async (props: IAppProps) => {
     && props.user.stravaToken.accessToken
 
   if (loginStatus === 'LOGGED_IN' && !props.activities.initialized
-    && isValidStravaToken) props.initializeActivities()  
+    && isValidStravaToken) {
+      props.initializeActivities()  
+    }
 }
-const enforceRoutes = (props: IAppProps) => {
+const enforceRoutes = (props: IAppProps) => {  
   const userLoginStatus: TLoginStatus = props.user.loginStatus as TLoginStatus
-  const isLoginPending = userLoginStatus === 'NOT_CHECKED'
-  const isLoggedIn = isLoginPending || userLoginStatus === 'LOGGED_IN'
-  const isAuthorizedToStrava = isLoggedIn && props.user.stravaToken && props.user.stravaToken.accessToken
+  if (userLoginStatus === 'NOT_CHECKED') return
   
-  const path = props.history.location.pathname
-  const notLoggedInPaths: Array<string> = ['/', '/login', '/signup', '/requestAuthorization']
-  
-  if (isLoggedIn && !isAuthorizedToStrava && path !== '/requestAuthorization') props.history.replace('/requestAuthorization')
-  else if (isAuthorizedToStrava && notLoggedInPaths.includes(path)) props.history.replace('/home')
-  else if (!isLoggedIn && !(notLoggedInPaths.includes(path))) props.history.replace('/login')
+  const isLoggedIn: boolean = userLoginStatus === 'LOGGED_IN'
+  const isAuthorizedToStrava: boolean = props.user.stravaToken !== undefined
+    && props.user.stravaToken.accessToken !== undefined
 
+  const path: string = props.history.location.pathname
+  const pathsWithoutLogin: Array<string> = ['/', '/login', '/signup', '/requestAuthorization']
+  if (isLoggedIn && !isAuthorizedToStrava && path !== '/requestAuthorization') props.history.replace('/requestAuthorization')
+  else if (isLoggedIn && isAuthorizedToStrava && pathsWithoutLogin.includes(path)) props.history.replace('/home')
+  else if (!isLoggedIn && !(pathsWithoutLogin.includes(path))) props.history.replace('/login')
+  
 }
 const App: React.SFC<IAppProps> = (props: IAppProps) => {
   useEffect(() => {

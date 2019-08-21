@@ -41,8 +41,7 @@ const Navigation = (props: INavigationProps) => {
     '/home' : '/'
   return (
     <div>
-      <Navbar bg='light' expand='lg'>
-        
+      <Navbar bg='light' expand='lg'>        
         <LinkContainer exact to={homeLinkPath}>
           <Navbar.Brand>Fitness App</Navbar.Brand>
         </LinkContainer>

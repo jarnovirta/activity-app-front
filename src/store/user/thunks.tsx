@@ -22,6 +22,7 @@ export const loginFailed = (): ThunkAction<void, void, null, Action<string>> =>
     dispatch(loginFailedAction())
   }
 export const setUser = (user: IUser): ThunkAction<void, IUser, null, Action<string>> => { 
+  activitiesService.setInterceptor(user)
   return (dispatch: Dispatch) => {    
     dispatch(setUserAction(user))
   }
